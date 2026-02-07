@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>METUSALEM696 — Project Hub</title>
   <meta name="description" content="PCB • Arduino/ESP32 • Python Automation — projects, docs & services." />
+
   <style>
     :root{
       --bg:#0b1020;
@@ -35,6 +36,7 @@
     }
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 16px 64px}
+
     header{
       display:flex; gap:18px; align-items:center; justify-content:space-between;
       padding:12px 0 8px;
@@ -44,9 +46,7 @@
       border-bottom: 1px solid rgba(255,255,255,.06);
       z-index:10;
     }
-    .brand{
-      display:flex; align-items:center; gap:12px; text-decoration:none;
-    }
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
     .logo{
       width:44px; height:44px; border-radius:14px;
       background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(125,255,204,.85));
@@ -68,6 +68,7 @@
       white-space:nowrap;
     }
     .chip:hover{transform:translateY(-1px); color:var(--text); border-color:rgba(122,162,255,.35)}
+
     .hero{
       margin-top:16px;
       padding:22px;
@@ -78,9 +79,7 @@
     }
     .hero h2{margin:0; font-size:28px; letter-spacing:.2px}
     .hero .sub{margin:8px 0 0; color:var(--muted); max-width:80ch}
-    .cta{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px
-    }
+    .cta{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
     .btn{
       display:inline-flex; gap:8px; align-items:center;
       padding:10px 12px;
@@ -98,6 +97,7 @@
     }
     .btn:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.55)}
     .small{font-size:12px; color:var(--muted)}
+
     .section{
       margin-top:18px;
       padding:18px;
@@ -107,6 +107,7 @@
       box-shadow: var(--shadow);
     }
     .section h2{margin:0 0 10px; font-size:20px}
+
     .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
     @media (max-width: 980px){ .grid3{grid-template-columns: repeat(2, 1fr);} }
     @media (max-width: 640px){
@@ -114,6 +115,7 @@
       .hero h2{font-size:24px}
       header{position:static}
     }
+
     .card{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
@@ -123,12 +125,17 @@
       flex-direction:column;
       min-height: 280px;
     }
+
+    /* CLICKABLE THUMB */
     .thumb{
       height:160px;
       background: rgba(255,255,255,.02);
       border-bottom:1px solid rgba(255,255,255,.08);
       position:relative;
       overflow:hidden;
+      display:block;
+      cursor:zoom-in;
+      text-decoration:none;
     }
     .thumb img{
       width:100%;
@@ -137,7 +144,22 @@
       display:block;
       transform:scale(1.02);
       filter:saturate(1.05) contrast(1.02);
+      transition:.2s ease;
     }
+    .thumb:hover img{transform:scale(1.06)}
+    .thumb::after{
+      content:"🔍 View";
+      position:absolute;
+      right:10px; bottom:10px;
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+      opacity:.95;
+    }
+
     .badge{
       position:absolute; top:10px; left:10px;
       font-size:12px; padding:6px 8px;
@@ -146,10 +168,12 @@
       background: rgba(0,0,0,.35);
       backdrop-filter: blur(6px);
     }
+
     .content{padding:12px 12px 10px; display:flex; flex-direction:column; gap:8px; flex:1}
     .title{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
     .title h3{margin:0; font-size:16px; line-height:1.25}
     .meta{color:var(--muted); font-size:13px}
+
     .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:2px}
     .tag{
       font-size:12px; color:var(--muted);
@@ -164,11 +188,10 @@
       background: rgba(255,255,255,.02);
       display:flex; gap:10px; flex-wrap:wrap;
     }
-    .cols{
-      display:grid; gap:12px;
-      grid-template-columns: 1.1fr .9fr;
-    }
+
+    .cols{display:grid; gap:12px; grid-template-columns: 1.1fr .9fr;}
     @media (max-width: 980px){ .cols{grid-template-columns: 1fr;} }
+
     .box{
       border:1px solid rgba(255,255,255,.10);
       border-radius:16px;
@@ -177,6 +200,8 @@
     }
     ul{margin:8px 0 0; padding-left:18px}
     li{margin:6px 0}
+    .hr{height:1px; background:rgba(255,255,255,.08); margin:14px 0}
+
     .gallery{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -185,13 +210,17 @@
     }
     @media (max-width: 980px){ .gallery{grid-template-columns: repeat(2, 1fr);} }
     @media (max-width: 640px){ .gallery{grid-template-columns: 1fr;} }
+
     .shot{
       border:1px solid rgba(255,255,255,.10);
       border-radius:16px;
       overflow:hidden;
       background: rgba(255,255,255,.02);
     }
-    .shot img{width:100%; height:220px; object-fit:cover; display:block}
+    .shot a{display:block; cursor:zoom-in}
+    .shot img{width:100%; height:220px; object-fit:cover; display:block; transition:.2s ease}
+    .shot a:hover img{transform:scale(1.04)}
+
     footer{
       margin-top:22px;
       padding-top:18px;
@@ -202,7 +231,6 @@
     .foot-links{display:flex; gap:12px; flex-wrap:wrap}
     .foot-links a{color:var(--muted); text-decoration:none}
     .foot-links a:hover{color:var(--text)}
-    .hr{height:1px; background:rgba(255,255,255,.08); margin:14px 0}
   </style>
 </head>
 
@@ -243,18 +271,18 @@
       </p>
     </section>
 
-    <!-- QUICK OVERVIEW CARDS -->
+    <!-- OVERVIEW CARDS -->
     <section class="section" id="hardware">
       <h2>🧩 Hardware / PCB</h2>
-      <div class="grid3">
 
+      <div class="grid3">
+        <!-- CARD: POWER -->
         <article class="card">
-          <div class="thumb">
+          <a class="thumb" href="assets/img/power-board.png" data-lightbox>
             <span class="badge">⚡ PCB</span>
             <img loading="lazy" alt="12V to 5V Power Board + MOSFET"
-              src="assets/img/Screenshot%202026-02-07%20160822.png"
-              onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, rgba(122,162,255,.25), rgba(125,255,204,.10))';">
-          </div>
+                 src="assets/img/power-board.png">
+          </a>
           <div class="content">
             <div class="title"><h3>12V → 5V Power Board + MOSFET</h3></div>
             <div class="meta">Power + protection footprints + MOSFET output area (low-voltage DIY projects).</div>
@@ -264,17 +292,17 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="#power">Open section</a>
-            <a class="btn" href="assets/img/Screenshot%202026-02-07%20161730.png">View image</a>
+            <a class="btn" href="assets/img/power-board.png" target="_blank" rel="noopener">Open original ↗</a>
           </div>
         </article>
 
+        <!-- CARD: NANO -->
         <article class="card">
-          <div class="thumb">
+          <a class="thumb" href="assets/img/IMG_20260205_124823.jpg" data-lightbox>
             <span class="badge">🧠 PCB</span>
             <img loading="lazy" alt="Arduino Nano Round Shield / Breakout"
-              src="assets/img/IMG_20260205_124823.jpg"
-              onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, rgba(255,210,122,.20), rgba(122,162,255,.12))';">
-          </div>
+                 src="assets/img/IMG_20260205_124823.jpg">
+          </a>
           <div class="content">
             <div class="title"><h3>Arduino Nano Round Shield / Breakout</h3></div>
             <div class="meta">Clean pin access for fast prototyping, wiring and enclosure builds.</div>
@@ -284,17 +312,17 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="#nano">Open section</a>
-            <a class="btn" href="assets/img/IMG_20260205_124137.jpg">Second photo</a>
+            <a class="btn" href="assets/img/IMG_20260205_124137.jpg" target="_blank" rel="noopener">Second photo ↗</a>
           </div>
         </article>
 
+        <!-- CARD: SERVICES -->
         <article class="card">
-          <div class="thumb">
+          <a class="thumb" href="assets/img/Screenshot%202026-02-07%20161754.png" data-lightbox>
             <span class="badge">🚀 Services</span>
-            <img loading="lazy" alt="Services"
-              src="assets/img/Screenshot%202026-02-07%20161754.png"
-              onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, rgba(125,255,204,.12), rgba(255,255,255,.04))';">
-          </div>
+            <img loading="lazy" alt="Firmware + Software Services"
+                 src="assets/img/Screenshot%202026-02-07%20161754.png">
+          </a>
           <div class="content">
             <div class="title"><h3>Firmware + Software Services</h3></div>
             <div class="meta">Arduino/ESP32 IoT builds + Python automations with clean deliverables and support.</div>
@@ -307,7 +335,6 @@
             <a class="btn" href="#python">Python</a>
           </div>
         </article>
-
       </div>
     </section>
 
@@ -339,20 +366,34 @@
           </ul>
 
           <div class="cta">
-            <!-- If you don't have the PDF yet, delete this button -->
-            <a class="btn primary" href="assets/pdf/power-board-quickstart.pdf">📥 Quick Start PDF</a>
-            <a class="btn" href="#contact">📩 Ask / Order</a>
+            <a class="btn primary" href="#contact">📩 Ask / Order</a>
           </div>
         </div>
 
         <div class="box">
-          <strong>🖼️ Gallery</strong>
+          <strong>🖼️ Gallery (click to zoom)</strong>
           <div class="gallery">
-            <div class="shot"><img loading="lazy" src="assets/img/Screenshot%202026-02-07%20160822.png" alt="Power Board image 1"></div>
-            <div class="shot"><img loading="lazy" src="assets/img/Screenshot%202026-02-07%20161730.png" alt="Power Board image 2"></div>
-            <div class="shot"><img loading="lazy" src="assets/img/Screenshot%202026-02-07%20161754.png" alt="Power Board image 3"></div>
+            <div class="shot">
+              <a href="assets/img/power-board.png" data-lightbox>
+                <img loading="lazy" src="assets/img/power-board.png" alt="Power Board — render">
+              </a>
+            </div>
+
+            <div class="shot">
+              <a href="assets/img/Screenshot%202026-02-07%20161730.png" data-lightbox>
+                <img loading="lazy" src="assets/img/Screenshot%202026-02-07%20161730.png" alt="Power Board — PCB view 1">
+              </a>
+            </div>
+
+            <div class="shot">
+              <a href="assets/img/Screenshot%202026-02-07%20161754.png" data-lightbox>
+                <img loading="lazy" src="assets/img/Screenshot%202026-02-07%20161754.png" alt="Power Board — PCB view 2">
+              </a>
+            </div>
           </div>
-          <p class="small" style="margin:10px 0 0;">Tip: if any image doesn’t show, rename files to remove spaces.</p>
+          <p class="small" style="margin:10px 0 0;">
+            Tip: dacă vrei 0 probleme, renumește pozele fără spații (ex: <b>shot-161730.png</b>).
+          </p>
         </div>
       </div>
     </section>
@@ -376,17 +417,23 @@
           </ul>
 
           <div class="cta">
-            <!-- If you don't have the PDF yet, delete this button -->
-            <a class="btn primary" href="assets/pdf/nano-shield-quickstart.pdf">📥 Quick Start PDF</a>
-            <a class="btn" href="#contact">📩 Ask / Order</a>
+            <a class="btn primary" href="#contact">📩 Ask / Order</a>
           </div>
         </div>
 
         <div class="box">
-          <strong>🖼️ Gallery</strong>
+          <strong>🖼️ Gallery (click to zoom)</strong>
           <div class="gallery">
-            <div class="shot"><img loading="lazy" src="assets/img/IMG_20260205_124823.jpg" alt="Nano Shield photo 1"></div>
-            <div class="shot"><img loading="lazy" src="assets/img/IMG_20260205_124137.jpg" alt="Nano Shield photo 2"></div>
+            <div class="shot">
+              <a href="assets/img/IMG_20260205_124823.jpg" data-lightbox>
+                <img loading="lazy" src="assets/img/IMG_20260205_124823.jpg" alt="Nano Shield — photo 1">
+              </a>
+            </div>
+            <div class="shot">
+              <a href="assets/img/IMG_20260205_124137.jpg" data-lightbox>
+                <img loading="lazy" src="assets/img/IMG_20260205_124137.jpg" alt="Nano Shield — photo 2">
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -410,7 +457,6 @@
             <li>🏠 Room monitor (temp/humidity + motion + display + alerts)</li>
             <li>🌱 Greenhouse logger (sensors + automation + cloud graphs)</li>
             <li>⚙️ Motor/relay automation (state machines, watchdog, fail-safes)</li>
-            <li>🖥️ Basic dashboards / control panels (optional)</li>
           </ul>
 
           <div class="hr"></div>
@@ -462,7 +508,7 @@
       <div class="cols">
         <div class="box">
           <div class="meta">
-            Automation scripts and data extraction with clean outputs (CSV/Excel/JSON), logging, and reliability. Built to run unattended and deliver results.
+            Automation scripts and data extraction with clean outputs (CSV/Excel/JSON), logging, and reliability.
           </div>
 
           <div class="hr"></div>
@@ -520,20 +566,16 @@
       <h2>📩 Contact / Hire</h2>
       <div class="box">
         <p class="meta" style="margin:0;">
-          Pune aici link-urile tale (Fiverr/Upwork). Dacă mi le dai, îți scriu și textul “pro” de profil + CTA.
+          Pune aici link-urile tale (Fiverr/Upwork). Dacă mi le dai, îți pun butoanele cu link real.
         </p>
 
         <div class="cta">
-          <!-- Replace # with your real links -->
+          <!-- replace # with your real links -->
           <a class="btn primary" href="#" rel="noopener">💼 Fiverr</a>
           <a class="btn" href="#" rel="noopener">🧾 Upwork</a>
           <a class="btn" href="https://github.com/METUSALEM696" rel="noopener">🐙 GitHub</a>
           <a class="btn" href="#top">⬆️ Top</a>
         </div>
-
-        <p class="small" style="margin:10px 0 0;">
-          Tip: renumește fișierele de imagini fără spații (ex: <b>power-board-1.png</b>) ca să eviți probleme.
-        </p>
       </div>
     </section>
 
@@ -549,8 +591,65 @@
 
   </div>
 
+  <!-- LIGHTBOX -->
+  <div id="lb" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.75); z-index:9999; padding:22px;">
+    <div style="max-width:1200px; margin:0 auto; height:100%; display:flex; flex-direction:column; gap:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+        <div id="lbTitle" style="color:#cfd7ff; font-size:14px; opacity:.9; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a id="lbOpen" href="#" target="_blank" rel="noopener"
+             style="color:#cfd7ff; text-decoration:none; border:1px solid rgba(255,255,255,.18); padding:8px 10px; border-radius:12px; background:rgba(255,255,255,.06);">
+            Open original ↗
+          </a>
+          <button id="lbClose"
+            style="cursor:pointer; color:#fff; border:1px solid rgba(255,255,255,.18); padding:8px 12px; border-radius:12px; background:rgba(255,255,255,.10);">
+            ✕ Close
+          </button>
+        </div>
+      </div>
+
+      <div style="flex:1; border:1px solid rgba(255,255,255,.12); border-radius:18px; overflow:hidden; background:rgba(10,14,26,.65); display:flex; align-items:center; justify-content:center;">
+        <img id="lbImg" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+      </div>
+    </div>
+  </div>
+
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // footer year
+    const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+
+    // lightbox
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+    const lbOpen = document.getElementById('lbOpen');
+    const lbTitle = document.getElementById('lbTitle');
+
+    function openLB(src, title){
+      lbImg.src = src;
+      lbImg.alt = title || "Image";
+      lbOpen.href = src;
+      lbTitle.textContent = title || src.split('/').pop();
+      lb.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB(){
+      lb.style.display = 'none';
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-lightbox]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const img = a.querySelector('img');
+        openLB(a.getAttribute('href'), img ? img.alt : '');
+      });
+    });
+
+    lbClose.addEventListener('click', closeLB);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.style.display === 'block') closeLB(); });
   </script>
 </body>
 </html>
