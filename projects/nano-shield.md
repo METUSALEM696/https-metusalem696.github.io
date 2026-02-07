@@ -1,7 +1,6 @@
 # Arduino Nano Round Shield / Breakout
 
-
-![Power Board](../assets/img/Screenshot 2026-02-07 160822.png to power-board.png)
+![Power Board](../assets/img/power-board.png)
 ![Power Board](../assets/img/Screenshot%202026-02-07%20160822.png)
 ![Power Board](../assets/img/Screenshot%202026-02-07%20161730.png)
 ![Power Board](../assets/img/Screenshot%202026-02-07%20161754.png)
