@@ -1,841 +1,863 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Meta Tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>METUSALEM696 - PCB Design, Arduino ESP32 IoT, Python Automation | UK Electronics Engineer</title>
-<meta name="description" content="Professional electronics engineer in UK. Custom PCB design (EasyEDA), Arduino/ESP32 IoT systems, Python automation. Freelance services for prototypes and production.">
-  <meta name="keywords" content="pcb design uk, arduino developer, esp32 iot, python automation, electronics engineer, custom pcb, easyeda, embedded systems, freelance, shropshire">
-  <meta name="author" content="METUSALEM696">
-  <meta name="robots" content="index, follow">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <meta name="description" content="Professional electronics engineer in UK. Custom PCB design (EasyEDA), Arduino/ESP32 IoT systems, Python automation. Freelance services for prototypes and production." />
+  <meta name="keywords" content="pcb design uk, arduino developer, esp32 iot, python automation, electronics engineer, custom pcb, easyeda, embedded systems, freelance, shropshire" />
 
   <style>
-    /* CSS Variables */
-    :root {
-      --primary: #7aa2ff;
-      --primary-dark: #5a82df;
-      --secondary: #7dffcc;
-      --accent: #ffd27a;
-      --bg-dark: #0a0e1a;
-      --bg-card: #0f1525;
-      --text-light: #e8edf9;
-      --text-muted: #9ca9d4;
-      --border: rgba(255,255,255,0.08);
-      --shadow: 0 20px 60px rgba(0,0,0,0.4);
-      --transition: all 0.3s ease;
+    :root{
+      --bg:#0b1020;
+      --panel:#0f1731;
+      --panel2:#121c3a;
+      --text:#e7ecff;
+      --muted:#a8b3e6;
+      --line:rgba(255,255,255,.09);
+      --shadow:0 18px 46px rgba(0,0,0,.45);
+      --r:18px;
+      --max:1120px;
+      --accent:#7aa2ff;
+      --accent2:#7dffcc;
+      --warn:#ffd27a;
+      --ok:#7dffcc;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(950px 600px at 12% 10%, rgba(122,162,255,.20), transparent 60%),
+        radial-gradient(950px 600px at 88% 12%, rgba(125,255,204,.14), transparent 60%),
+        radial-gradient(900px 600px at 50% 95%, rgba(255,210,122,.08), transparent 55%),
+        var(--bg);
+      line-height:1.55;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 16px 70px}
 
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(122,162,255,0.12), transparent),
-        radial-gradient(ellipse 60% 40% at 0% 100%, rgba(125,255,204,0.08), transparent),
-        var(--bg-dark);
-      color: var(--text-light);
-      line-height: 1.6;
+    /* Top bar */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(11,16,32,.92), rgba(11,16,32,.70));
+      border-bottom:1px solid var(--line);
     }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+    .top{
+      max-width:var(--max); margin:0 auto; padding:14px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
     }
-
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10,14,26,0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+    .logo{
+      width:44px; height:44px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(125,255,204,.85));
+      box-shadow: var(--shadow);
+      flex:0 0 auto;
     }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .brand h1{font-size:16px; margin:0}
+    .brand p{margin:0; font-size:12.5px; color:var(--muted)}
+    nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--muted); text-decoration:none;
+      font-size:13px;
+      transition: transform .15s ease, border-color .15s ease, color .15s ease;
+      white-space:nowrap;
     }
-
-    .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
+    .chip:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.35); color:var(--text)}
+    .chip b{font-weight:600; color:var(--text)}
 
     /* Hero */
-    .hero {
-      padding: 80px 0 60px;
-      text-align: center;
+    .hero{
+      margin-top:18px;
+      padding:22px;
+      border-radius:calc(var(--r) + 6px);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(520px 200px at 20% 15%, rgba(122,162,255,.25), transparent 65%),
+        radial-gradient(520px 200px at 80% 30%, rgba(125,255,204,.15), transparent 65%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .hero > *{position:relative}
+    .hero h2{
+      margin:0;
+      font-size:44px;
+      line-height:1.1;
+      letter-spacing:-.02em;
+    }
+    .hero h2 span{color:var(--accent)}
+    .hero p{margin:12px 0 0; color:var(--muted); font-size:16px; max-width:70ch}
+    .heroRow{
+      margin-top:16px;
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:11px 14px; border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      text-decoration:none;
+      font-weight:600;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.40); background: rgba(255,255,255,.07)}
+    .btn.primary{background: rgba(122,162,255,.14); border-color: rgba(122,162,255,.35)}
+    .btn.primary:hover{background: rgba(122,162,255,.18); border-color: rgba(122,162,255,.50)}
+    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .pill{
+      font-size:12.5px; color:var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:6px 10px; border-radius:999px;
     }
 
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      line-height: 1.2;
+    /* Controls */
+    .controls{
+      margin-top:18px;
+      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+    }
+    .search{
+      flex:1 1 340px;
+      display:flex; gap:10px; align-items:center;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius:14px;
+      padding:10px 12px;
+    }
+    .search input{
+      width:100%;
+      background:transparent;
+      border:0;
+      outline:none;
+      color:var(--text);
+      font-size:14px;
+    }
+    .search .hint{color:var(--muted); font-size:13px}
+    .toggleRow{display:flex; gap:10px; flex-wrap:wrap}
+    .toggle{
+      cursor:pointer;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius:12px;
+      padding:9px 11px;
+      font-size:13px;
+      color:var(--muted);
+      user-select:none;
+    }
+    .toggle.active{
+      color:var(--text);
+      border-color: rgba(122,162,255,.35);
+      background: rgba(122,162,255,.12);
     }
 
-    .gradient-text {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* Grid */
+    .sectionTitle{
+      margin:26px 0 12px;
+      font-size:22px;
+      letter-spacing:-.01em;
+      display:flex; align-items:center; gap:10px;
     }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      max-width: 700px;
-      margin: 1.5rem auto;
+    .sectionTitle small{color:var(--muted); font-weight:500}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
     }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 2rem;
+    .card{
+      grid-column: span 4;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      box-shadow: 0 14px 34px rgba(0,0,0,.35);
+      overflow:hidden;
+      min-height: 330px;
+      display:flex; flex-direction:column;
+      position:relative;
     }
-
-    .btn {
-      padding: 0.9rem 1.8rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .card:hover{border-color: rgba(122,162,255,.30)}
+    .thumb{
+      height:170px;
+      background: rgba(0,0,0,.35);
+      overflow:hidden;
+      position:relative;
     }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
+    .thumb img{
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .25s ease;
+      cursor: zoom-in;
     }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(122,162,255,0.3);
+    .card:hover .thumb img{transform: scale(1.06)}
+    .thumb:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 30%, rgba(11,16,32,.65));
+      pointer-events:none;
     }
-
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
+    .cardBody{padding:14px 14px 16px; display:flex; flex-direction:column; gap:10px; flex:1}
+    .card h3{
+      margin:0;
+      font-size:20px;
+      letter-spacing:-.01em;
     }
-
-    .btn-secondary:hover {
-      background: rgba(122,162,255,0.1);
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
     }
-
-    .skills-row {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 2rem;
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto}
+    .tag{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:6px 10px;
+      border-radius:999px;
     }
-
-    .skill-badge {
-      padding: 0.6rem 1.2rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:2px}
+    .miniBtn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+      font-weight:600;
+      font-size:13px;
+      color:var(--text);
+      cursor:pointer;
+      transition: transform .15s ease, border-color .15s ease;
     }
+    .miniBtn:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.35)}
+    .miniBtn.ghost{color:var(--muted); font-weight:600}
 
-    /* Section */
-    .section {
-      padding: 60px 0;
+    /* Detail blocks */
+    .detail{
+      margin-top:16px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding:18px;
     }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
+    .detailGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:start;
     }
-
-    .section-title {
-      font-size: 2.2rem;
-      margin-bottom: 0.8rem;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .detail h4{margin:0; font-size:20px}
+    .detail .sub{margin:6px 0 0; color:var(--muted)}
+    .bullet{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .bullet li{margin:6px 0}
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
     }
-
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
+    .kpi{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:10px 12px;
     }
-
-    /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .service-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: var(--transition);
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(122,162,255,0.2);
-    }
-
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .service-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .service-card p {
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-
-    .features-list {
-      list-style: none;
-      margin-bottom: 1.5rem;
-    }
-
-    .features-list li {
-      padding: 0.4rem 0;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .features-list li::before {
-      content: '✓';
-      color: var(--secondary);
-      font-weight: bold;
-    }
-
-    /* Portfolio Grid */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .portfolio-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .portfolio-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .portfolio-img {
-      width: 100%;
-      height: 220px;
-      overflow: hidden;
-      background: rgba(0,0,0,0.3);
-      position: relative;
-    }
-
-    .portfolio-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-
-    .portfolio-item:hover .portfolio-img img {
-      transform: scale(1.05);
-    }
-
-    .portfolio-content {
-      padding: 1.5rem;
-    }
-
-    .portfolio-item h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .portfolio-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .tag {
-      background: rgba(122,162,255,0.15);
-      color: var(--primary);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      border: 1px solid rgba(122,162,255,0.3);
-    }
-
-    /* Contact Section */
-    .contact-section {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .contact-icon {
-      font-size: 1.8rem;
-      color: var(--primary);
-    }
-
-    .contact-details h4 {
-      margin-bottom: 0.4rem;
-    }
-
-    .contact-details p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .contact-form {
-      grid-column: 1 / -1;
-      display: grid;
-      gap: 1.2rem;
-      margin-top: 2rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .form-group label {
-      font-weight: 600;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.8rem;
-      color: var(--text-light);
-      font-size: 1rem;
-      font-family: inherit;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
+    .kpi b{display:block; font-size:13px}
+    .kpi span{display:block; color:var(--muted); font-size:12.5px; margin-top:4px}
+    .note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:13px;
+      border-left:3px solid rgba(122,162,255,.40);
+      padding-left:10px;
     }
 
     /* Footer */
-    footer {
-      background: rgba(0,0,0,0.3);
-      padding: 2rem 0;
-      margin-top: 4rem;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      color: var(--text-muted);
+    footer{
+      margin-top:26px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:12.5px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
     }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .social-links a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: var(--transition);
-    }
-
-    .social-links a:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-      transform: translateY(-3px);
-    }
+    .muted{color:var(--muted)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
 
     /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      z-index: 1000;
-      padding: 20px;
-      cursor: pointer;
+    .lb{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background: rgba(0,0,0,.68);
+      z-index:9999;
     }
-
-    .lightbox.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .lb.open{display:flex}
+    .lbCard{
+      width:min(1100px, 100%);
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(15,23,49,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 26px 90px rgba(0,0,0,.65);
+      overflow:hidden;
+      position:relative;
     }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    .lbTop{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
-
-    .lightbox-close {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      color: white;
-      font-size: 2rem;
-      background: rgba(255,255,255,0.1);
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: var(--transition);
+    .lbTop .cap{color:var(--muted); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+    .lbTop .lbBtns{display:flex; gap:8px; flex-wrap:wrap}
+    .lbBtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:12px;
+      padding:8px 10px;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
     }
-
-    .lightbox-close:hover {
-      background: var(--primary);
+    .lbBtn:hover{border-color: rgba(122,162,255,.35)}
+    .lbImgWrap{
+      background: rgba(0,0,0,.35);
+      max-height: 78vh;
+      overflow:auto;
+    }
+    .lbImg{
+      width:100%;
+      height:auto;
+      display:block;
+      cursor: zoom-out;
+    }
+    .lbHint{
+      padding:10px 12px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-size:12.5px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-title {
-        font-size: 1.8rem;
-      }
+    @media (max-width: 980px){
+      .card{grid-column: span 6}
+      .hero h2{font-size:38px}
+      .detailGrid{grid-template-columns: 1fr}
     }
-
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 1.6rem;
-      }
-
-      .section {
-        padding: 40px 0;
-      }
+    @media (max-width: 640px){
+      .card{grid-column: span 12}
+      .hero h2{font-size:34px}
+      nav{justify-content:flex-start}
+      .top{flex-wrap:wrap}
     }
   </style>
 </head>
 
 <body>
-  <!-- Header -->
   <header>
-    <div class="container">
+    <div class="top">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>⚡ METUSALEM696</h1>
+          <p>🧩 PCB • 🚀 Arduino/ESP32 • 🐍 Python Automation</p>
+        </div>
+      </a>
       <nav>
-        <div class="logo">⚡ METUSALEM696</div>
-        <ul class="nav-links">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="#contact" class="btn btn-primary">Get in Touch 📩</a>
+        <a class="chip" href="#pcb">🧩 <b>PCB Design</b></a>
+        <a class="chip" href="#iot">🚀 <b>Arduino/ESP32</b></a>
+        <a class="chip" href="#python">🐍 <b>Python</b></a>
+        <a class="chip" href="#contact">📩 <b>Contact</b></a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-     <h1>Electronics Engineer<br>
-<span class="gradient-text">Custom PCB Design • Arduino/ESP32 IoT • Python Automation</span></h1>
+  <main class="wrap" id="top">
+    <section class="hero">
+      <h2>⚡ Electronics Engineer — <span>PCB, IoT & Automation</span> 🎯</h2>
       <p>
-  UK-based electronics engineer offering professional PCB design services (EasyEDA), 
-  Arduino and ESP32 IoT development, and Python automation solutions. 
-  From custom circuit boards to complete embedded systems - clean code, 
-  practical documentation, reliable results.
-</p>
-      <div class="hero-buttons">
-        <a href="#portfolio" class="btn btn-secondary">View Projects 📂</a>
-        <a href="#contact" class="btn btn-primary">Start Project 🚀</a>
+        UK-based electronics engineer offering professional <b>🧩 PCB design</b> (EasyEDA), 
+        <b>🚀 Arduino/ESP32 IoT</b> development, and <b>🐍 Python automation</b> solutions. 
+        From custom circuit boards to complete embedded systems — clean code, practical documentation, reliable results. ✅
+      </p>
+      <div class="heroRow">
+        <a class="btn primary" href="#projects">🚀 Browse Projects</a>
+        <a class="btn" href="#contact">💬 Get in Touch</a>
+        <button class="btn" id="copyLinkBtn" type="button">🔗 Share Link</button>
       </div>
-      <div class="skills-row">
-        <span class="skill-badge">🔧 EasyEDA PCB Design</span>
-        <span class="skill-badge">💻 Arduino/ESP32</span>
-        <span class="skill-badge">🐍 Python</span>
-        <span class="skill-badge">🖨️ 3D Printing</span>
-        <span class="skill-badge">📍 UK Based</span>
+      <div class="pillRow">
+        <div class="pill">🏠 Based in Shropshire, UK</div>
+        <div class="pill">📦 Ready for GitHub Pages</div>
+        <div class="pill">🖼️ Click images for zoom</div>
+        <div class="pill">📱 Mobile responsive</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Services -->
-  <section id="services" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">🔧 What I Do</h2>
-        <p class="section-subtitle">Professional electronics and automation services</p>
+    <section class="controls" aria-label="Filters">
+      <div class="search">
+        <span class="hint">🔎</span>
+        <input id="q" type="text" placeholder="Search: DHT22, MQTT, relay, buck converter, web scraper..." />
       </div>
+      <div class="toggleRow">
+        <div class="toggle active" data-filter="all">✨ All</div>
+        <div class="toggle" data-filter="pcb">🧩 PCB</div>
+        <div class="toggle" data-filter="iot">🚀 IoT</div>
+        <div class="toggle" data-filter="python">🐍 Python</div>
+      </div>
+    </section>
 
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🧩</div>
-          <h3>PCB Design</h3>
-          <p>Custom PCB design in EasyEDA. From schematic to production-ready Gerber files.</p>
-          <ul class="features-list">
-            <li>2-4 layer boards</li>
-            <li>Power trace calculations</li>
-            <li>Component footprints</li>
-            <li>BOM & assembly docs</li>
+    <h3 class="sectionTitle" id="projects">🎯 Featured Projects <small>(click images to zoom 🔍)</small></h3>
+
+    <section class="grid" id="cards">
+
+      <!-- PCB: Power Board -->
+      <article class="card" data-tags="pcb power 12v 5v buck mosfet protection driver voltage regulator">
+        <div class="thumb">
+          <img
+            src="assets/img/power-board.png"
+            alt="12V to 5V Power Board + MOSFET Driver"
+            data-full="assets/img/power-board.png"
+            data-caption="⚡ 12V → 5V Power Board + MOSFET Driver"
+            loading="lazy"
+          />
+        </div>
+        <div class="cardBody">
+          <h3>⚡ 12V → 5V Power Board + MOSFET Driver 🔌</h3>
+          <p>🔧 Round PCB with buck converter, protection circuits, and MOSFET output for switching loads (pumps, motors, LEDs). 🛡️</p>
+          <div class="ctaRow">
+            <a class="miniBtn" href="#pcb">→ Full Details</a>
+            <button class="miniBtn ghost js-openImg"
+              data-full="assets/img/power-board.png"
+              data-caption="⚡ 12V → 5V Power Board + MOSFET">🖼️ Zoom</button>
+          </div>
+          <div class="tags">
+            <span class="tag">⚡ Buck</span>
+            <span class="tag">🛡️ Protection</span>
+            <span class="tag">🔌 MOSFET</span>
+            <span class="tag">⚙️ 12V→5V</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PCB: Nano Shield -->
+      <article class="card" data-tags="pcb nano shield breakout round headers arduino prototyping">
+        <div class="thumb">
+          <img
+            src="assets/img/IMG_20260205_124823.jpg"
+            alt="Arduino Nano Round Shield PCB"
+            data-full="assets/img/IMG_20260205_124823.jpg"
+            data-caption="🧠 Arduino Nano Round Shield / Breakout"
+            loading="lazy"
+          />
+        </div>
+        <div class="cardBody">
+          <h3>🧠 Arduino Nano Round Shield 🎯</h3>
+          <p>🔩 Clean breakout PCB for rapid prototyping, organized wiring, and compact enclosures. Perfect for sensor projects! 📦</p>
+          <div class="ctaRow">
+            <a class="miniBtn" href="#pcb">→ Full Details</a>
+            <button class="miniBtn ghost js-openImg"
+              data-full="assets/img/IMG_20260205_124823.jpg"
+              data-caption="🧠 Arduino Nano Shield">🖼️ Zoom</button>
+          </div>
+          <div class="tags">
+            <span class="tag">🧠 Nano</span>
+            <span class="tag">🔌 Breakout</span>
+            <span class="tag">⭕ Round PCB</span>
+            <span class="tag">⚙️ Prototyping</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- IoT Services -->
+      <article class="card" data-tags="iot arduino esp32 firmware mqtt wifi sensors dht bme relay pump automation">
+        <div class="thumb">
+          <img
+            src="assets/img/IMG_20260205_124137.jpg"
+            alt="Arduino ESP32 IoT Projects"
+            data-full="assets/img/IMG_20260205_124137.jpg"
+            data-caption="🚀 Arduino/ESP32 IoT Development Services"
+            loading="lazy"
+          />
+        </div>
+        <div class="cardBody">
+          <h3>🚀 Arduino/ESP32 IoT Solutions 📡</h3>
+          <p>🌐 Custom firmware, sensor integration (DHT, BME, PIR, ultrasonic, ToF), MQTT/WiFi connectivity, relay control, displays, and more! ⚙️</p>
+          <div class="ctaRow">
+            <a class="miniBtn" href="#iot">→ See All Services</a>
+            <button class="miniBtn ghost js-openImg"
+              data-full="assets/img/IMG_20260205_124137.jpg"
+              data-caption="🚀 IoT Development">🖼️ Zoom</button>
+          </div>
+          <div class="tags">
+            <span class="tag">🌐 IoT</span>
+            <span class="tag">📡 MQTT</span>
+            <span class="tag">🌡️ Sensors</span>
+            <span class="tag">⚡ Automation</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Python Automation -->
+      <article class="card" data-tags="python automation scraper web api cli tools scripts windows selenium">
+        <div class="thumb">
+          <img
+            src="assets/img/Screenshot 2026-02-07 161730.png"
+            alt="Python Automation Tools"
+            data-full="assets/img/Screenshot 2026-02-07 161730.png"
+            data-caption="🐍 Python Automation & Web Tools"
+            loading="lazy"
+          />
+        </div>
+        <div class="cardBody">
+          <h3>🐍 Python Automation & Web Scrapers 🤖</h3>
+          <p>💻 Custom scripts, CLI tools, web scrapers, dashboards, file automation, API integration, and workflow optimization! 🚀</p>
+          <div class="ctaRow">
+            <a class="miniBtn" href="#python">→ See Examples</a>
+            <button class="miniBtn ghost js-openImg"
+              data-full="assets/img/Screenshot 2026-02-07 161730.png"
+              data-caption="🐍 Python Tools">🖼️ Zoom</button>
+          </div>
+          <div class="tags">
+            <span class="tag">🤖 Automation</span>
+            <span class="tag">🌐 Scrapers</span>
+            <span class="tag">📊 Dashboards</span>
+            <span class="tag">⚙️ CLI Tools</span>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- DETAILS: PCB -->
+    <h3 class="sectionTitle" id="pcb">🧩 PCB Design Services <small>(EasyEDA, custom boards 🎨)</small></h3>
+    
+    <section class="detail">
+      <div class="detailGrid">
+        <div>
+          <h4>⚡ 12V → 5V Power Board + MOSFET Driver 🔌</h4>
+          <p class="sub">Compact power supply with protection and switching output for IoT nodes, motors, pumps, and LED strips. 💡</p>
+          <ul class="bullet">
+            <li>🔌 <b>Input:</b> 12V DC (typical), supports 9-15V range with proper buck module</li>
+            <li>⚡ <b>Output:</b> Regulated 5V (up to 3A with suitable buck converter like LM2596)</li>
+            <li>🛡️ <b>Protection:</b> Footprints for TVS diode, fuse, reverse polarity protection</li>
+            <li>🔧 <b>MOSFET section:</b> IRF540N or similar (40A+ capable) for pump/motor/solenoid switching</li>
+            <li>📦 <b>Connectors:</b> Screw terminals for easy wiring (5.08mm pitch)</li>
+            <li>💡 <b>LED indicators:</b> Power status, output status</li>
           </ul>
+          <div class="note">⚠️ <b>Safety:</b> Low voltage DC only (12V max recommended). Not for mains/230V. Always verify polarity!</div>
+          <div class="ctaRow" style="margin-top:12px">
+            <button class="miniBtn js-openImg" data-full="assets/img/power-board.png" data-caption="⚡ Power Board PCB">🖼️ View Full Image</button>
+            <a class="miniBtn ghost" href="assets/img/power-board.png" target="_blank">↗ Open in Tab</a>
+          </div>
         </div>
+        <div class="kpis">
+          <div class="kpi"><b>⚙️ Use Cases</b><span>IoT nodes, water pumps, relay drivers, LED strips, 12V→5V conversion</span></div>
+          <div class="kpi"><b>🎯 Features</b><span>Buck regulator, MOSFET driver, protection circuits, screw terminals</span></div>
+          <div class="kpi"><b>📐 Design</b><span>Round PCB, EasyEDA, Gerber files ready for manufacturing</span></div>
+          <div class="kpi"><b>✅ Status</b><span>Tested prototypes, iterative improvements ongoing</span></div>
+        </div>
+      </div>
+    </section>
 
-        <div class="service-card">
-          <div class="service-icon">🚀</div>
-          <h3>Arduino/ESP32 IoT</h3>
-          <p>Embedded systems with clean firmware. Non-blocking code, practical features.</p>
-          <ul class="features-list">
-            <li>WiFi, MQTT, HTTP</li>
-            <li>Sensors & displays</li>
-            <li>Relay/MOSFET control</li>
-            <li>Web interfaces</li>
+    <section class="detail" style="margin-top:14px">
+      <div class="detailGrid">
+        <div>
+          <h4>🧠 Arduino Nano Round Shield / Breakout 🎯</h4>
+          <p class="sub">Professional breakout board for Arduino Nano — clean wiring, organized pins, perfect for sensor projects and enclosures! 📦</p>
+          <ul class="bullet">
+            <li>📌 <b>Pin access:</b> All Nano pins broken out to labeled headers (5V, GND, Digital, Analog)</li>
+            <li>🔌 <b>Connectors:</b> 2.54mm headers + screw terminals for sensors/modules</li>
+            <li>💡 <b>Power rails:</b> Multiple 5V and GND points for easy power distribution</li>
+            <li>🎨 <b>Round design:</b> Compact, fits standard enclosures, looks professional!</li>
+            <li>📦 <b>Mounting:</b> 4x M3 mounting holes for secure installation</li>
+            <li>🏷️ <b>Silkscreen:</b> Clear pin labels, polarity markings, easy identification</li>
           </ul>
+          <div class="ctaRow" style="margin-top:12px">
+            <button class="miniBtn js-openImg" data-full="assets/img/IMG_20260205_124823.jpg" data-caption="🧠 Nano Shield">🖼️ View Board</button>
+            <button class="miniBtn js-openImg" data-full="assets/img/Screenshot 2026-02-07 161754.png" data-caption="🎨 EasyEDA Design">🎨 Design View</button>
+          </div>
         </div>
+        <div class="kpis">
+          <div class="kpi"><b>🎯 Perfect For</b><span>Sensor projects, home automation, custom builds, prototyping</span></div>
+          <div class="kpi"><b>✨ Benefits</b><span>Cleaner wiring, faster builds, professional look, easy debugging</span></div>
+          <div class="kpi"><b>🎨 Design</b><span>EasyEDA source files, round PCB, organized layout</span></div>
+          <div class="kpi"><b>📦 Extras</b><span>Gerber files, BOM, assembly notes, customizable!</span></div>
+        </div>
+      </div>
+    </section>
 
-        <div class="service-card">
-          <div class="service-icon">🐍</div>
-          <h3>Python Automation</h3>
-          <p>Scripts and tools for automation, web scraping, and data processing.</p>
-          <ul class="features-list">
-            <li>Task automation</li>
-            <li>Web scraping</li>
-            <li>API integration</li>
-            <li>CLI tools</li>
+    <!-- DETAILS: IoT -->
+    <h3 class="sectionTitle" id="iot">🚀 Arduino/ESP32 IoT Development <small>(firmware, sensors, automation 🌐)</small></h3>
+    <section class="detail">
+      <div class="detailGrid">
+        <div>
+          <h4>🚀 Arduino / ESP32 Custom IoT Projects 🌐</h4>
+          <p class="sub">Professional firmware development that <i>actually works</i> — clean code, non‑blocking logic, comprehensive documentation! ✅</p>
+
+          <ul class="bullet">
+            <li>🌡️ <b>Temperature & Humidity:</b> DHT11, DHT22, DHT21, AM2301, BME280, BME680, BMP180, BMP280, SHT31, AHT10/20, DS18B20</li>
+            <li>📏 <b>Distance & Proximity:</b> HC-SR04, JSN-SR04T, VL53L0X, VL53L1X, VL53L4CD (ToF), GP2Y0A21YK (IR)</li>
+            <li>🚶 <b>Motion & Presence:</b> PIR (HC-SR501), microwave radar (RCWL-0516), ultrasonic sensors</li>
+            <li>💡 <b>Light & Color:</b> LDR, BH1750, TSL2561, TCS34725 (RGB color), APDS-9960 (gesture)</li>
+            <li>🌍 <b>Environmental:</b> MQ-2/135 (gas), MH-Z19B (CO2), CCS811 (air quality), SGP30</li>
+            <li>⚡ <b>Current & Voltage:</b> ACS712, INA219, INA226, ZMPT101B (AC voltage), PZEM-004T</li>
+            <li>🧭 <b>Orientation:</b> MPU6050, MPU9250, BNO055, HMC5883L (compass), GY-521</li>
+            <li>🔌 <b>Relays & Switching:</b> 5V/12V relays, solid-state relays (SSR), MOSFET drivers (IRF540N, IRLZ44N)</li>
+            <li>📺 <b>Displays:</b> LCD 16x2/20x4 (I2C), OLED 0.96"/1.3" (SSD1306), TFT (ST7735, ILI9341), 7-segment, MAX7219</li>
+            <li>🌐 <b>Communication:</b> MQTT, HTTP/HTTPS REST APIs, WebSocket, Blynk, ThingSpeak, Firebase</li>
+            <li>📡 <b>Wireless:</b> WiFi (ESP32/ESP8266), Bluetooth/BLE, NRF24L01, LoRa (SX1278), 433MHz RF</li>
+            <li>🔐 <b>Access Control:</b> RFID (RC522, PN532), fingerprint (R503, R305), keypad, NFC</li>
+            <li>⏰ <b>Real-Time Clock:</b> DS1307, DS3231, PCF8523</li>
+            <li>💾 <b>Storage:</b> SD card modules, EEPROM, SPI Flash</li>
+            <li>🎵 <b>Audio:</b> Buzzers, DFPlayer Mini (MP3), speakers</li>
+            <li>⚙️ <b>Motors:</b> Servo (SG90, MG996R), stepper (28BYJ-48, NEMA17), DC motors with L298N/TB6612</li>
           </ul>
+
+          <div class="note">🔒 <b>Legal & Safety:</b> Authorized projects only (no security bypassing). Low-voltage preferred. Proper safety for mains control.</div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><b>📦 Deliverables</b><span>Tested Arduino/PlatformIO code, wiring diagrams, pin maps, setup guide</span></div>
+          <div class="kpi"><b>📚 Documentation</b><span>Step-by-step setup, component list, troubleshooting, comments in code</span></div>
+          <div class="kpi"><b>✅ Code Quality</b><span>Non-blocking state machines, millis() timers, no delay(), stable & tested</span></div>
+          <div class="kpi"><b>🚀 Get Started</b><span>Board + sensors list + desired behavior + deadline = quote!</span></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Portfolio -->
-  <section id="portfolio" class="section" style="background: rgba(255,255,255,0.02);">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">💼 Recent Projects</h2>
-        <p class="section-subtitle">Examples of work I've done (click to enlarge)</p>
-      </div>
-
-      <div class="portfolio-grid">
-        <!-- Power Board -->
-        <div class="portfolio-item" onclick="openLightbox('assets/img/power-board.png')">
-          <div class="portfolio-img">
-            <img src="assets/img/power-board.png" alt="Power Board PCB" loading="lazy">
-          </div>
-          <div class="portfolio-content">
-            <h3>⚡ 12V→5V Power Board</h3>
-            <p>Round PCB with buck converter, protections, and MOSFET driver area.</p>
-            <div class="portfolio-tags">
-              <span class="tag">PCB</span>
-              <span class="tag">Buck</span>
-              <span class="tag">MOSFET</span>
-            </div>
+    <!-- DETAILS: Python -->
+    <h3 class="sectionTitle" id="python">🐍 Python Automation <small>(scripts, scrapers, dashboards 🤖)</small></h3>
+    <section class="detail">
+      <div class="detailGrid">
+        <div>
+          <h4>🐍 Python Automation & Web Tools 💻</h4>
+          <p class="sub">Custom automation scripts, web scrapers, CLI tools, and dashboards that save time and reduce manual work! 🚀</p>
+          <ul class="bullet">
+            <li>🤖 <b>Task Automation:</b> Windows Task Scheduler integration, file operations (copy/move/rename/organize), batch processing</li>
+            <li>🌐 <b>Web Scraping:</b> BeautifulSoup, Selenium, Scrapy, Playwright — extract data from websites (respecting robots.txt & ToS)</li>
+            <li>📊 <b>Data Processing:</b> Pandas, CSV/Excel manipulation, data cleaning, format conversion</li>
+            <li>🔗 <b>API Integration:</b> REST APIs, JSON handling, authentication (OAuth, API keys), webhook automation</li>
+            <li>📧 <b>Email Automation:</b> Send/receive emails (SMTP, IMAP), attachments, scheduling</li>
+            <li>📁 <b>File Management:</b> Backup scripts, sync folders, rename batches, organize downloads</li>
+            <li>🖥️ <b>Desktop Automation:</b> PyAutoGUI, keyboard/mouse control, screenshot capture</li>
+            <li>📈 <b>Dashboards:</b> Flask/FastAPI web apps, data visualization (Plotly, Matplotlib), real-time monitoring</li>
+            <li>⚙️ <b>System Utilities:</b> Process monitoring, log analysis, system info gathering</li>
+            <li>🗄️ <b>Database:</b> SQLite, MySQL, PostgreSQL integration, data migration</li>
+          </ul>
+          <div class="ctaRow" style="margin-top:12px">
+            <button class="miniBtn js-openImg" data-full="assets/img/Screenshot 2026-02-07 161730.png" data-caption="🐍 Python Tools">🖼️ View Examples</button>
           </div>
         </div>
-
-        <!-- Nano Shield -->
-        <div class="portfolio-item" onclick="openLightbox('assets/img/IMG_20260205_124823.jpg')">
-          <div class="portfolio-img">
-            <img src="assets/img/IMG_20260205_124823.jpg" alt="Arduino Nano Shield" loading="lazy">
-          </div>
-          <div class="portfolio-content">
-            <h3>🧠 Arduino Nano Shield</h3>
-            <p>Round breakout board for cleaner wiring and prototyping.</p>
-            <div class="portfolio-tags">
-              <span class="tag">PCB</span>
-              <span class="tag">Nano</span>
-              <span class="tag">Breakout</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hardware Photo -->
-        <div class="portfolio-item" onclick="openLightbox('assets/img/IMG_20260205_124137.jpg')">
-          <div class="portfolio-img">
-            <img src="assets/img/IMG_20260205_124137.jpg" alt="Electronics Hardware" loading="lazy">
-          </div>
-          <div class="portfolio-content">
-            <h3>🔧 Electronics Projects</h3>
-            <p>Various Arduino/ESP32 builds with sensors, displays, and control systems.</p>
-            <div class="portfolio-tags">
-              <span class="tag">IoT</span>
-              <span class="tag">Arduino</span>
-              <span class="tag">ESP32</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Python Screenshot -->
-        <div class="portfolio-item" onclick="openLightbox('assets/img/Screenshot 2026-02-07 161730.png')">
-          <div class="portfolio-img">
-            <img src="assets/img/Screenshot 2026-02-07 161730.png" alt="Python Automation" loading="lazy">
-          </div>
-          <div class="portfolio-content">
-            <h3>🐍 Python Automation</h3>
-            <p>Automation scripts and tools for workflow optimization.</p>
-            <div class="portfolio-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Automation</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Nano Shield Screenshot -->
-        <div class="portfolio-item" onclick="openLightbox('assets/img/Screenshot 2026-02-07 161754.png')">
-          <div class="portfolio-img">
-            <img src="assets/img/Screenshot 2026-02-07 161754.png" alt="PCB Design" loading="lazy">
-          </div>
-          <div class="portfolio-content">
-            <h3>📐 PCB Design Work</h3>
-            <p>EasyEDA designs showing layout and component placement.</p>
-            <div class="portfolio-tags">
-              <span class="tag">PCB</span>
-              <span class="tag">EasyEDA</span>
-            </div>
-          </div>
+        <div class="kpis">
+          <div class="kpi"><b>📦 Output</b><span>Clean Python scripts, CLI tools, web dashboards, batch files</span></div>
+          <div class="kpi"><b>🎯 Focus</b><span>Stability, readability, maintainability, practical documentation</span></div>
+          <div class="kpi"><b>💻 Stack</b><span>Python 3.x, venv/pip, modern libraries, cross-platform when possible</span></div>
+          <div class="kpi"><b>🛠️ Support</b><span>Bug fixes, improvements, feature additions as needed</span></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="contact-section">
-        <div class="section-header">
-          <h2 class="section-title">📩 Let's Work Together</h2>
-          <p class="section-subtitle">Send me your project details and I'll get back to you</p>
+    <!-- CONTACT -->
+    <h3 class="sectionTitle" id="contact">📩 Get in Touch <small>(start your project! 🚀)</small></h3>
+    <section class="detail">
+      <div class="detailGrid">
+        <div>
+          <h4>💬 Start Your Project Today! 🎯</h4>
+          <p class="sub">Send me this info and I'll reply with a clear plan, timeline, and next steps:</p>
+          <ul class="bullet">
+            <li>🧠 <b>Platform:</b> Arduino (Nano/Uno/Mega) or ESP32 (exact model)</li>
+            <li>🔌 <b>Components:</b> List of sensors/displays/relays/modules (with part numbers or links)</li>
+            <li>⚡ <b>Power:</b> Input voltage, load type (relay/motor/pump/LED), current requirements</li>
+            <li>🎯 <b>Functionality:</b> Exact behavior you want (step-by-step description)</li>
+            <li>⏰ <b>Deadline:</b> When do you need it?</li>
+            <li>💰 <b>Budget:</b> Your budget range</li>
+          </ul>
+          <div class="ctaRow" style="margin-top:12px">
+            <button class="miniBtn primary" id="copyTemplateBtn" type="button">📋 Copy Template</button>
+            <a class="miniBtn ghost" href="#top">↑ Back to Top</a>
+          </div>
+          <div class="note">💡 <b>Tip:</b> The more details you provide, the faster and more accurate the quote! 🚀</div>
         </div>
 
-        <div class="contact-grid">
-          <div class="contact-item">
-            <div class="contact-icon">📧</div>
-            <div class="contact-details">
-              <h4>Email</h4>
-              <p>your.email@example.com</p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div class="contact-details">
-              <h4>Location</h4>
-              <p>Shropshire, UK</p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">💼</div>
-            <div class="contact-details">
-              <h4>Fiverr / GitHub</h4>
-              <p>@metusalem696</p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">⏰</div>
-            <div class="contact-details">
-              <h4>Availability</h4>
-              <p>Mon-Fri, GMT timezone</p>
-            </div>
-          </div>
-        </div>
-
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label for="name">Name *</label>
-            <input type="text" id="name" name="name" required placeholder="Your name">
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" required placeholder="your@email.com">
-          </div>
-
-          <div class="form-group">
-            <label for="service">Service Type *</label>
-            <select id="service" name="service" required>
-              <option value="">-- Select --</option>
-              <option value="pcb">PCB Design</option>
-              <option value="iot">Arduino/ESP32 IoT</option>
-              <option value="python">Python Automation</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Project Details *</label>
-            <textarea id="message" name="message" required placeholder="Describe your project:
-- Board type (Arduino/ESP32 model)
-- Components needed
-- Required functionality
-- Timeline"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Send Message 📩</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <p>© 2026 METUSALEM696 • Electronics Engineer</p>
-        <div class="social-links">
-          <a href="#" title="GitHub">💻</a>
-          <a href="#" title="LinkedIn">💼</a>
-          <a href="#" title="Email">📧</a>
+        <div class="kpis">
+          <div class="kpi"><b>⚡ Response Time</b><span>Clear scope + timeline + pricing within 24-48h</span></div>
+          <div class="kpi"><b>✅ Quality</b><span>Clean code, practical docs, tested solutions</span></div>
+          <div class="kpi"><b>🔒 Ethics</b><span>Authorized work only, safe designs, proper safety</span></div>
+          <div class="kpi"><b>📍 Location</b><span>UK-based (Shropshire), remote work worldwide 🌍</span></div>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> <b>⚡ METUSALEM696</b> • <span class="muted">Electronics Engineer • UK 🇬🇧</span></div>
+      <div class="mono">🚀 PCB Design • 🌐 IoT Solutions • 🐍 Python Automation</div>
+    </footer>
+  </main>
 
   <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">×</button>
-    <img id="lightbox-img" src="" alt="Preview">
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lbCard" role="dialog" aria-modal="true" aria-label="Image preview">
+      <div class="lbTop">
+        <div class="cap" id="lbCap">🖼️ Preview</div>
+        <div class="lbBtns">
+          <a class="lbBtn" id="lbOpen" href="#" target="_blank" rel="noopener">↗ Open</a>
+          <button class="lbBtn" id="lbClose" type="button">✕ Close</button>
+        </div>
+      </div>
+      <div class="lbImgWrap" id="lbWrap">
+        <img class="lbImg" id="lbImg" alt="Preview image" />
+      </div>
+      <div class="lbHint">
+        <div>🖱️ Click image / outside to close • ⌨️ ESC closes</div>
+        <div class="muted">💡 Tip: right‑click → "Open image in new tab" if you want full resolution.</div>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Form submission
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Thank you! I\'ll get back to you soon.');
-      e.target.reset();
+    // ---- Utils ----
+    const $ = (s, el=document) => el.querySelector(s);
+    const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+    // ---- Year ----
+    $("#year").textContent = new Date().getFullYear();
+
+    // ---- Copy link ----
+    $("#copyLinkBtn").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(location.href.split("#")[0]);
+        $("#copyLinkBtn").textContent = "✅ Link Copied!";
+        setTimeout(()=> $("#copyLinkBtn").textContent="🔗 Share Link", 1500);
+      }catch(e){
+        alert("📋 Clipboard blocked. Please copy manually from address bar.");
+      }
     });
 
-    // Lightbox
-    function openLightbox(src) {
-      document.getElementById('lightbox').classList.add('active');
-      document.getElementById('lightbox-img').src = src;
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    // Close lightbox with ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
+    // ---- Copy template ----
+    const template = [
+      "🧠 Platform: (Arduino Nano/Uno/Mega or ESP32 exact model)",
+      "🔌 Components: (sensors/displays/relays - list or links)",
+      "⚡ Power: (voltage + load type: relay/motor/pump/etc.)",
+      "🎯 Functionality: (exact behavior you want)",
+      "⏰ Deadline:",
+      "💰 Budget:"
+    ].join("\\n");
+    $("#copyTemplateBtn").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(template);
+        $("#copyTemplateBtn").textContent = "✅ Template Copied!";
+        setTimeout(()=> $("#copyTemplateBtn").textContent="📋 Copy Template", 1500);
+      }catch(e){
+        alert("📋 Clipboard blocked. Copy manually:\\n\\n" + template);
+      }
     });
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+    // ---- Filters ----
+    const toggles = $$(".toggle");
+    let activeFilter = "all";
+
+    const applyFilters = () => {
+      const q = ($("#q").value || "").trim().toLowerCase();
+      $$("#cards .card").forEach(card => {
+        const tags = (card.getAttribute("data-tags") || "").toLowerCase();
+        const text = card.innerText.toLowerCase();
+        const matchesQ = !q || tags.includes(q) || text.includes(q);
+
+        const matchesFilter =
+          activeFilter === "all" ||
+          (activeFilter === "pcb" && tags.includes("pcb")) ||
+          (activeFilter === "iot" && (tags.includes("iot") || tags.includes("arduino") || tags.includes("esp32"))) ||
+          (activeFilter === "python" && tags.includes("python"));
+
+        card.style.display = (matchesQ && matchesFilter) ? "" : "none";
+      });
+    };
+
+    toggles.forEach(t => {
+      t.addEventListener("click", () => {
+        toggles.forEach(x => x.classList.remove("active"));
+        t.classList.add("active");
+        activeFilter = t.getAttribute("data-filter");
+        applyFilters();
       });
     });
+
+    $("#q").addEventListener("input", applyFilters);
+
+    // ---- Lightbox ----
+    const lb = $("#lb");
+    const lbImg = $("#lbImg");
+    const lbCap = $("#lbCap");
+    const lbOpen = $("#lbOpen");
+    const lbClose = $("#lbClose");
+
+    const openLB = (src, caption="") => {
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+      lbImg.src = src;
+      lbImg.alt = caption || "Preview image";
+      lbCap.textContent = caption || src;
+      lbOpen.href = src;
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeLB = () => {
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      lbImg.src = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+
+    // Click any thumb image -> lightbox
+    $$("img[data-full]").forEach(img => {
+      img.addEventListener("click", (e) => {
+        e.preventDefault();
+        openLB(img.dataset.full, img.dataset.caption || img.alt || "");
+      });
+    });
+
+    // Buttons that open images
+    $$(".js-openImg").forEach(btn => {
+      btn.addEventListener("click", () => openLB(btn.dataset.full, btn.dataset.caption || ""));
+    });
+
+    // Close handlers
+    lbClose.addEventListener("click", closeLB);
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLB();
+    });
+    lbImg.addEventListener("click", closeLB);
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lb.classList.contains("open")) closeLB();
+    });
+
+    // ---- Initial filter ----
+    applyFilters();
   </script>
 </body>
 </html>
