@@ -1,4 +1,5 @@
 # 12V to 5V Power Board + MOSFET
+![Power Board](../assets/img/Screenshot%202026-02-07%20160822.png)
 
 ## Overview
 Round PCB for low-voltage DIY projects. Power section + protection footprints + MOSFET output area.
