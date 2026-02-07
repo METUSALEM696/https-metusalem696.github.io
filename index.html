@@ -244,9 +244,11 @@
       font-size:13px;
       color:var(--text);
       cursor:pointer;
-      transition: transform .15s ease, border-color .15s ease;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
     }
     .miniBtn:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.35)}
+    .miniBtn.primary{background: rgba(122,162,255,.14); border-color: rgba(122,162,255,.35)}
+    .miniBtn.primary:hover{background: rgba(122,162,255,.20); border-color: rgba(122,162,255,.50)}
     .miniBtn.ghost{color:var(--muted); font-weight:600}
 
     /* Detail blocks */
@@ -681,32 +683,84 @@
     </section>
 
     <!-- CONTACT -->
-    <h3 class="sectionTitle" id="contact">📩 Get in Touch <small>(start your project! 🚀)</small></h3>
+    <h3 class="sectionTitle" id="contact">📩 Get in Touch <small>(let's work together! 🚀)</small></h3>
+    
+    <!-- Contact Info Cards -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-bottom:16px">
+      
+      <div class="detail" style="padding:16px">
+        <h4 style="font-size:18px; margin-bottom:10px">📧 Email Me</h4>
+        <p class="sub" style="margin-bottom:12px">For project inquiries, quotes, and collaboration</p>
+        <a href="mailto:your.email@example.com" class="miniBtn primary" style="width:100%; justify-content:center">
+          ✉️ your.email@example.com
+        </a>
+        <p class="note" style="margin-top:10px; border:none; padding:0">📝 Replace with your real email!</p>
+      </div>
+
+      <div class="detail" style="padding:16px">
+        <h4 style="font-size:18px; margin-bottom:10px">🔗 Find Me Online</h4>
+        <p class="sub" style="margin-bottom:12px">Portfolio, social profiles & work samples</p>
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <a href="https://github.com/metusalem696" target="_blank" rel="noopener" class="miniBtn">
+            🐙 GitHub
+          </a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" class="miniBtn">
+            💼 LinkedIn
+          </a>
+          <a href="https://fiverr.com/metusalem696" target="_blank" rel="noopener" class="miniBtn">
+            💚 Fiverr
+          </a>
+        </div>
+        <p class="note" style="margin-top:10px; border:none; padding:0">🔧 Update these links!</p>
+      </div>
+
+      <div class="detail" style="padding:16px">
+        <h4 style="font-size:18px; margin-bottom:10px">⚡ Quick Response</h4>
+        <p class="sub" style="margin-bottom:12px">I typically reply within:</p>
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <div style="padding:8px; background:rgba(125,255,204,.08); border-radius:10px; border:1px solid rgba(125,255,204,.20)">
+            <b style="color:var(--ok)">🕐 24-48 hours</b><br>
+            <span style="font-size:12px; color:var(--muted)">For project inquiries</span>
+          </div>
+          <div style="padding:8px; background:rgba(122,162,255,.08); border-radius:10px; border:1px solid rgba(122,162,255,.20)">
+            <b style="color:var(--accent)">📍 UK Timezone</b><br>
+            <span style="font-size:12px; color:var(--muted)">Shropshire, GMT/BST</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Project Template Section -->
     <section class="detail">
       <div class="detailGrid">
         <div>
-          <h4>💬 Start Your Project Today! 🎯</h4>
-          <p class="sub">Send me this info and I'll reply with a clear plan, timeline, and next steps:</p>
-          <ul class="bullet">
-            <li>🧠 <b>Platform:</b> Arduino (Nano/Uno/Mega) or ESP32 (exact model)</li>
-            <li>🔌 <b>Components:</b> List of sensors/displays/relays/modules (with part numbers or links)</li>
-            <li>⚡ <b>Power:</b> Input voltage, load type (relay/motor/pump/LED), current requirements</li>
-            <li>🎯 <b>Functionality:</b> Exact behavior you want (step-by-step description)</li>
-            <li>⏰ <b>Deadline:</b> When do you need it?</li>
-            <li>💰 <b>Budget:</b> Your budget range</li>
-          </ul>
+          <h4>💬 Ready to Start? Use This Template! 📋</h4>
+          <p class="sub">Copy this template and send it to me via email or message. The more details, the better! 🎯</p>
+          
+          <div style="background:rgba(0,0,0,.25); border:1px solid var(--line); border-radius:14px; padding:14px; margin:12px 0; font-family:monospace; font-size:13px; line-height:1.6">
+<b>🧠 Platform:</b> (Arduino Nano/Uno/Mega or ESP32 exact model)<br>
+<b>🔌 Components:</b> (sensors/displays/relays - list with part numbers)<br>
+<b>⚡ Power:</b> (voltage + load type: relay/motor/pump/etc.)<br>
+<b>🎯 Functionality:</b> (exact behavior you want - step by step)<br>
+<b>⏰ Deadline:</b> (when do you need it?)<br>
+<b>💰 Budget:</b> (your budget range)
+          </div>
+
           <div class="ctaRow" style="margin-top:12px">
             <button class="miniBtn primary" id="copyTemplateBtn" type="button">📋 Copy Template</button>
-            <a class="miniBtn ghost" href="#top">↑ Back to Top</a>
+            <a href="mailto:your.email@example.com?subject=Project%20Inquiry%20-%20METUSALEM696&body=🧠%20Platform:%20%0A🔌%20Components:%20%0A⚡%20Power:%20%0A🎯%20Functionality:%20%0A⏰%20Deadline:%20%0A💰%20Budget:%20" class="miniBtn">
+              📧 Send Email
+            </a>
           </div>
-          <div class="note">💡 <b>Tip:</b> The more details you provide, the faster and more accurate the quote! 🚀</div>
+          <div class="note">💡 <b>Tip:</b> Include links to component datasheets or product pages if possible!</div>
         </div>
 
         <div class="kpis">
-          <div class="kpi"><b>⚡ Response Time</b><span>Clear scope + timeline + pricing within 24-48h</span></div>
+          <div class="kpi"><b>⚡ Response</b><span>Clear scope + timeline + pricing within 24-48h</span></div>
           <div class="kpi"><b>✅ Quality</b><span>Clean code, practical docs, tested solutions</span></div>
           <div class="kpi"><b>🔒 Ethics</b><span>Authorized work only, safe designs, proper safety</span></div>
-          <div class="kpi"><b>📍 Location</b><span>UK-based (Shropshire), remote work worldwide 🌍</span></div>
+          <div class="kpi"><b>🌍 Worldwide</b><span>Remote work, UK-based, international clients welcome</span></div>
         </div>
       </div>
     </section>
@@ -757,21 +811,20 @@
     });
 
     // ---- Copy template ----
-    const template = [
-      "🧠 Platform: (Arduino Nano/Uno/Mega or ESP32 exact model)",
-      "🔌 Components: (sensors/displays/relays - list or links)",
-      "⚡ Power: (voltage + load type: relay/motor/pump/etc.)",
-      "🎯 Functionality: (exact behavior you want)",
-      "⏰ Deadline:",
-      "💰 Budget:"
-    ].join("\\n");
+    const template = `🧠 Platform: (Arduino Nano/Uno/Mega or ESP32 exact model)
+🔌 Components: (sensors/displays/relays - list with part numbers)
+⚡ Power: (voltage + load type: relay/motor/pump/etc.)
+🎯 Functionality: (exact behavior you want - step by step)
+⏰ Deadline: (when do you need it?)
+💰 Budget: (your budget range)`;
+    
     $("#copyTemplateBtn").addEventListener("click", async () => {
       try{
         await navigator.clipboard.writeText(template);
         $("#copyTemplateBtn").textContent = "✅ Template Copied!";
         setTimeout(()=> $("#copyTemplateBtn").textContent="📋 Copy Template", 1500);
       }catch(e){
-        alert("📋 Clipboard blocked. Copy manually:\\n\\n" + template);
+        alert("📋 Clipboard blocked. Copy manually:\n\n" + template);
       }
     });
 
