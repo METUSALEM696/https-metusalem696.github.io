@@ -55,9 +55,12 @@
     .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
     .logo{
       width:44px; height:44px; border-radius:14px;
-      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(125,255,204,.85));
       box-shadow: var(--shadow);
       flex:0 0 auto;
+      overflow: hidden;
+    }
+    .logo img{
+      width:100%; height:100%; object-fit:cover;
     }
     .brand h1{font-size:16px; margin:0}
     .brand p{margin:0; font-size:12.5px; color:var(--muted)}
@@ -127,45 +130,6 @@
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
       padding:6px 10px; border-radius:999px;
-    }
-
-    /* Controls */
-    .controls{
-      margin-top:18px;
-      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
-    }
-    .search{
-      flex:1 1 340px;
-      display:flex; gap:10px; align-items:center;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius:14px;
-      padding:10px 12px;
-    }
-    .search input{
-      width:100%;
-      background:transparent;
-      border:0;
-      outline:none;
-      color:var(--text);
-      font-size:14px;
-    }
-    .search .hint{color:var(--muted); font-size:13px}
-    .toggleRow{display:flex; gap:10px; flex-wrap:wrap}
-    .toggle{
-      cursor:pointer;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius:12px;
-      padding:9px 11px;
-      font-size:13px;
-      color:var(--muted);
-      user-select:none;
-    }
-    .toggle.active{
-      color:var(--text);
-      border-color: rgba(122,162,255,.35);
-      background: rgba(122,162,255,.12);
     }
 
     /* Grid */
@@ -382,7 +346,9 @@
   <header>
     <div class="top">
       <a class="brand" href="#top">
-        <div class="logo" aria-hidden="true"></div>
+        <div class="logo" aria-hidden="true">
+          <img src="assets/img/logo.png" alt="METUSALEM696 Logo" />
+        </div>
         <div>
           <h1>⚡ METUSALEM696</h1>
           <p>🧩 PCB • 🚀 Arduino/ESP32 • 🐍 Python Automation</p>
@@ -419,19 +385,6 @@
         <div class="pill">🎨 Custom design services</div>
         <div class="pill">📦 Fast UK shipping</div>
         <div class="pill">🌍 Worldwide delivery</div>
-      </div>
-    </section>
-
-    <section class="controls" aria-label="Filters">
-      <div class="search">
-        <span class="hint">🔎</span>
-        <input id="q" type="text" placeholder="Search: DHT22, MQTT, relay, buck converter, web scraper..." />
-      </div>
-      <div class="toggleRow">
-        <div class="toggle active" data-filter="all">✨ All</div>
-        <div class="toggle" data-filter="pcb">🧩 PCB</div>
-        <div class="toggle" data-filter="iot">🚀 IoT</div>
-        <div class="toggle" data-filter="python">🐍 Python</div>
       </div>
     </section>
 
@@ -586,9 +539,9 @@
       <article class="card" data-tags="pcb nano shield breakout round headers arduino prototyping">
         <div class="thumb">
           <img
-            src="assets/img/IMG_20260205_124823.jpg"
+            src="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
             alt="Arduino Nano Round Shield PCB"
-            data-full="assets/img/IMG_20260205_124823.jpg"
+            data-full="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
             data-caption="🧠 Arduino Nano Round Shield / Breakout"
             loading="lazy"
           />
@@ -599,7 +552,7 @@
           <div class="ctaRow">
             <a class="miniBtn" href="#pcb">→ Full Details</a>
             <button class="miniBtn ghost js-openImg"
-              data-full="assets/img/IMG_20260205_124823.jpg"
+              data-full="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
               data-caption="🧠 Arduino Nano Shield">🖼️ Zoom</button>
           </div>
           <div class="tags">
@@ -615,9 +568,9 @@
       <article class="card" data-tags="iot arduino esp32 firmware mqtt wifi sensors dht bme relay pump automation">
         <div class="thumb">
           <img
-            src="assets/img/IMG_20260205_124137.jpg"
+            src="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
             alt="Arduino ESP32 IoT Projects"
-            data-full="assets/img/IMG_20260205_124137.jpg"
+            data-full="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
             data-caption="🚀 Arduino/ESP32 IoT Development Services"
             loading="lazy"
           />
@@ -628,7 +581,7 @@
           <div class="ctaRow">
             <a class="miniBtn" href="#iot">→ See All Services</a>
             <button class="miniBtn ghost js-openImg"
-              data-full="assets/img/IMG_20260205_124137.jpg"
+              data-full="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
               data-caption="🚀 IoT Development">🖼️ Zoom</button>
           </div>
           <div class="tags">
@@ -948,8 +901,8 @@
             <li>🏷️ <b>Silkscreen:</b> Clear pin labels, polarity markings, easy identification</li>
           </ul>
           <div class="ctaRow" style="margin-top:12px">
-            <button class="miniBtn js-openImg" data-full="assets/img/IMG_20260205_124823.jpg" data-caption="🧠 Nano Shield">🖼️ View Board</button>
-            <button class="miniBtn js-openImg" data-full="assets/img/Screenshot 2026-02-07 161754.png" data-caption="🎨 EasyEDA Design">🎨 Design View</button>
+            <button class="miniBtn js-openImg" data-full="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg" data-caption="🧠 Nano Shield">🖼️ View Board</button>
+            <button class="miniBtn js-openImg" data-full="assets/img/MOSFET Motor Driver PCB Flyback Diode Protection.png" data-caption="🎨 EasyEDA Design">🎨 Design View</button>
           </div>
         </div>
         <div class="kpis">
@@ -1611,38 +1564,6 @@
       }
     });
 
-    // ---- Filters ----
-    const toggles = $$(".toggle");
-    let activeFilter = "all";
-
-    const applyFilters = () => {
-      const q = ($("#q").value || "").trim().toLowerCase();
-      $$("#cards .card").forEach(card => {
-        const tags = (card.getAttribute("data-tags") || "").toLowerCase();
-        const text = card.innerText.toLowerCase();
-        const matchesQ = !q || tags.includes(q) || text.includes(q);
-
-        const matchesFilter =
-          activeFilter === "all" ||
-          (activeFilter === "pcb" && tags.includes("pcb")) ||
-          (activeFilter === "iot" && (tags.includes("iot") || tags.includes("arduino") || tags.includes("esp32"))) ||
-          (activeFilter === "python" && tags.includes("python"));
-
-        card.style.display = (matchesQ && matchesFilter) ? "" : "none";
-      });
-    };
-
-    toggles.forEach(t => {
-      t.addEventListener("click", () => {
-        toggles.forEach(x => x.classList.remove("active"));
-        t.classList.add("active");
-        activeFilter = t.getAttribute("data-filter");
-        applyFilters();
-      });
-    });
-
-    $("#q").addEventListener("input", applyFilters);
-
     // ---- Lightbox ----
     const lb = $("#lb");
     const lbImg = $("#lbImg");
@@ -1651,6 +1572,7 @@
     const lbClose = $("#lbClose");
 
     const openLB = (src, caption="") => {
+      if (!src) return;
       lb.classList.add("open");
       lb.setAttribute("aria-hidden", "false");
       lbImg.src = src;
@@ -1669,31 +1591,58 @@
       document.body.style.overflow = "";
     };
 
-    // Click any thumb image -> lightbox
-    $$("img[data-full]").forEach(img => {
-      img.addEventListener("click", (e) => {
-        e.preventDefault();
-        openLB(img.dataset.full, img.dataset.caption || img.alt || "");
+    // Initialize lightbox on all images with data-full attribute
+    const initLightbox = () => {
+      // Thumbnail images in cards
+      $$("img[data-full]").forEach(img => {
+        img.style.cursor = "pointer";
+        img.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const fullSrc = img.getAttribute("data-full");
+          const caption = img.getAttribute("data-caption") || img.alt || "";
+          openLB(fullSrc, caption);
+        });
       });
-    });
 
-    // Buttons that open images
-    $$(".js-openImg").forEach(btn => {
-      btn.addEventListener("click", () => openLB(btn.dataset.full, btn.dataset.caption || ""));
-    });
+      // Buttons with js-openImg class
+      $$(".js-openImg").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const fullSrc = btn.getAttribute("data-full");
+          const caption = btn.getAttribute("data-caption") || "";
+          openLB(fullSrc, caption);
+        });
+      });
 
-    // Close handlers
-    lbClose.addEventListener("click", closeLB);
-    lb.addEventListener("click", (e) => {
-      if (e.target === lb) closeLB();
-    });
-    lbImg.addEventListener("click", closeLB);
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && lb.classList.contains("open")) closeLB();
-    });
+      // Close handlers
+      if (lbClose) {
+        lbClose.addEventListener("click", closeLB);
+      }
+      
+      if (lb) {
+        lb.addEventListener("click", (e) => {
+          if (e.target === lb) closeLB();
+        });
+      }
+      
+      if (lbImg) {
+        lbImg.addEventListener("click", closeLB);
+      }
+      
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lb.classList.contains("open")) closeLB();
+      });
+    };
 
-    // ---- Initial filter ----
-    applyFilters();
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLightbox);
+    } else {
+      initLightbox();
+    }
+
   </script>
 </body>
 </html>
