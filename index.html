@@ -1369,12 +1369,11 @@
       <div class="detail" style="padding:28px; text-align:center">
         <div style="font-size:48px; margin-bottom:16px">📧</div>
         <h4 style="font-size:20px; margin-bottom:8px">Email Me Directly</h4>
-        <p class="sub" style="margin-bottom:18px">Best for project inquiries & quotes</p>
-        <a href="mailto:your.email@example.com?subject=Project%20Inquiry%20from%20Portfolio&body=Hi!%0A%0AProject%20Type:%20%0A%0ADetails:%20%0A%0ABudget:%20%0A%0ADeadline:%20" 
-           class="btn primary" style="width:100%; font-size:15px; padding:14px">
-          ✉️ sflorinciprian@yahoo.com
-        </a>
-        <p style="font-size:13px; color:var(--muted); margin-top:12px">⚡ I reply within 24 hours!</p>
+        <p class="sub" style="margin-bottom:18px">Click to copy my email address!</p>
+        <button id="copyEmailBtn" class="btn primary" style="width:100%; font-size:15px; padding:14px; cursor:pointer">
+          📧 sforinciprian@gmail.com
+        </button>
+        <p id="emailCopyStatus" style="font-size:13px; color:var(--muted); margin-top:12px">⚡ Click to copy • I reply within 24h!</p>
       </div>
 
       <!-- Social Links -->
@@ -1514,6 +1513,34 @@
         alert("📋 Clipboard blocked. Please copy manually from address bar.");
       }
     });
+
+    // ---- Copy email button ----
+    const copyEmailBtn = $("#copyEmailBtn");
+    const emailCopyStatus = $("#emailCopyStatus");
+    
+    if (copyEmailBtn) {
+      copyEmailBtn.addEventListener("click", async () => {
+        const email = "your.email@example.com";
+        try {
+          await navigator.clipboard.writeText(email);
+          copyEmailBtn.textContent = "✅ Email Copied!";
+          copyEmailBtn.style.background = "rgba(125,255,204,.15)";
+          copyEmailBtn.style.borderColor = "rgba(125,255,204,.4)";
+          emailCopyStatus.textContent = "✅ Copied! Now paste it in your email app!";
+          emailCopyStatus.style.color = "var(--ok)";
+          
+          setTimeout(() => {
+            copyEmailBtn.textContent = "📧 your.email@example.com";
+            copyEmailBtn.style.background = "";
+            copyEmailBtn.style.borderColor = "";
+            emailCopyStatus.textContent = "⚡ Click to copy • I reply within 24h!";
+            emailCopyStatus.style.color = "var(--muted)";
+          }, 3000);
+        } catch(e) {
+          alert("📧 Copy this email:\n\n" + email);
+        }
+      });
+    }
 
     // ---- Copy template ----
     const template = `🧠 Platform: (Arduino Nano/Uno/Mega or ESP32 exact model)
