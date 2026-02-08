@@ -23,6 +23,7 @@
       --accent2:#7dffcc;
       --warn:#ffd27a;
       --ok:#7dffcc;
+      --bad:#ff8b8b;
     }
 
     *{box-sizing:border-box}
@@ -53,7 +54,10 @@
       max-width:var(--max); margin:0 auto; padding:14px 16px;
       display:flex; align-items:center; justify-content:space-between; gap:14px;
     }
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+    }
     .logo{
       width:80px; height:80px; border-radius:18px;
       box-shadow: var(--shadow);
@@ -119,7 +123,7 @@
       display:flex; gap:12px; flex-wrap:wrap; align-items:center;
     }
     .btn{
-      display:inline-flex; align-items:center; gap:10px;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:11px 14px; border-radius:14px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
@@ -127,10 +131,15 @@
       font-weight:600;
       transition: transform .15s ease, border-color .15s ease, background .15s ease;
       user-select:none;
+      cursor:pointer;
+      color:var(--text);
+      font-family: inherit;
+      line-height: 1;
     }
     .btn:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.40); background: rgba(255,255,255,.07)}
     .btn.primary{background: rgba(122,162,255,.14); border-color: rgba(122,162,255,.35)}
     .btn.primary:hover{background: rgba(122,162,255,.18); border-color: rgba(122,162,255,.50)}
+    .btn.ghost{background: rgba(255,255,255,.04)}
     .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
     .pill{
       font-size:12.5px; color:var(--muted);
@@ -206,7 +215,7 @@
     }
     .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:2px}
     .miniBtn{
-      display:inline-flex; align-items:center; gap:8px;
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
       padding:8px 10px; border-radius:12px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
@@ -216,6 +225,7 @@
       color:var(--text);
       cursor:pointer;
       transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      font-family: inherit;
     }
     .miniBtn:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.35)}
     .miniBtn.primary{background: rgba(122,162,255,.14); border-color: rgba(122,162,255,.35)}
@@ -274,64 +284,47 @@
     .muted{color:var(--muted)}
     .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
 
-    /* Lightbox */
-    .lb{
-      position:fixed;
-      inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      background: rgba(0,0,0,.68);
-      z-index:9999;
-    }
-    .lb.open{display:flex}
-    .lbCard{
-      width:min(1100px, 100%);
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.12);
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%) translateY(12px);
       background: rgba(15,23,49,.92);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 26px 90px rgba(0,0,0,.65);
-      overflow:hidden;
-      position:relative;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 20px 60px rgba(0,0,0,.55);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      max-width: min(560px, calc(100% - 28px));
+      display:flex;
+      gap:10px;
+      align-items:center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, border-color .18s ease;
+      z-index: 10000;
+      font-size: 13.5px;
     }
-    .lbTop{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:10px 12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
+    .toast.show{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
-    .lbTop .cap{color:var(--muted); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-    .lbTop .lbBtns{display:flex; gap:8px; flex-wrap:wrap}
-    .lbBtn{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      border-radius:12px;
-      padding:8px 10px;
-      font-size:13px;
-      font-weight:700;
-      cursor:pointer;
-      text-decoration:none;
+    .toast .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(122,162,255,.15);
+      flex: 0 0 auto;
     }
-    .lbBtn:hover{border-color: rgba(122,162,255,.35)}
-    .lbImgWrap{
-      background: rgba(0,0,0,.35);
-      max-height: 78vh;
-      overflow:auto;
+    .toast.ok .dot{
+      background: var(--ok);
+      box-shadow: 0 0 0 4px rgba(125,255,204,.15);
     }
-    .lbImg{
-      width:100%;
-      height:auto;
-      display:block;
-      cursor: zoom-out;
-    }
-    .lbHint{
-      padding:10px 12px;
-      border-top:1px solid rgba(255,255,255,.10);
-      color:var(--muted);
-      font-size:12.5px;
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    .toast.bad .dot{
+      background: var(--bad);
+      box-shadow: 0 0 0 4px rgba(255,139,139,.15);
     }
 
     /* Responsive */
@@ -352,12 +345,10 @@
 <body>
   <header>
     <div class="top">
-      <a class="brand" href="#top">
-        <a href="assets/img/hero-banner.png" target="_blank" rel="noopener" style="display:block; line-height:0;">
-          <div class="logo" aria-hidden="true">
-            <img src="assets/img/logo.png" alt="METUSALEM696 Logo" />
-          </div>
-        </a>
+      <a class="brand" href="#top" aria-label="Go to top">
+        <div class="logo" aria-hidden="true">
+          <img src="assets/img/logo.png" alt="METUSALEM696 Logo" />
+        </div>
         <div>
           <h1>⚡ METUSALEM696</h1>
           <p>🧩 PCB • 🚀 Arduino/ESP32 • 🐍 Python Automation</p>
@@ -378,12 +369,16 @@
   <main class="wrap" id="top">
     <section class="hero">
       <div style="margin-bottom:20px">
-        <img src="assets/img/hero-banner.png" alt="Arduino ESP32 IoT PCB Design Python Automation - Professional Services" style="width:100%; height:auto; display:block; border-radius:18px; box-shadow: 0 12px 40px rgba(0,0,0,.4);" />
+        <a href="assets/img/hero-banner.png" target="_blank" rel="noopener" aria-label="Open hero banner in new tab">
+          <img src="assets/img/hero-banner.png" alt="Arduino ESP32 IoT PCB Design Python Automation - Professional Services" style="width:100%; height:auto; display:block; border-radius:18px; box-shadow: 0 12px 40px rgba(0,0,0,.4);" />
+        </a>
       </div>
       <div class="heroRow">
         <a class="btn primary" href="#shop">🛒 Browse Shop</a>
         <a class="btn" href="#pricing">💰 Custom Services</a>
         <a class="btn" href="#contact">💬 Get in Touch</a>
+        <!-- ✅ FIX: this button existed in JS but was missing in HTML -->
+        <button id="copyLinkBtn" class="btn ghost" type="button">🔗 Share Link</button>
       </div>
     </section>
 
@@ -424,10 +419,9 @@
     <!-- Skills & Tools -->
     <div class="detail" style="margin-bottom:20px">
       <h4 style="font-size:18px; margin-bottom:12px">🛠️ Skills & Tools I Use</h4>
-      
+
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px">
-        
-        <!-- PCB Design Tools -->
+
         <div>
           <h5 style="font-size:14px; margin:0 0 8px 0; color:var(--accent)">🧩 PCB Design</h5>
           <div style="display:flex; flex-wrap:wrap; gap:6px">
@@ -439,7 +433,6 @@
           </div>
         </div>
 
-        <!-- Firmware/Development -->
         <div>
           <h5 style="font-size:14px; margin:0 0 8px 0; color:var(--accent2)">🚀 Firmware/Development</h5>
           <div style="display:flex; flex-wrap:wrap; gap:6px">
@@ -451,7 +444,6 @@
           </div>
         </div>
 
-        <!-- Python Stack -->
         <div>
           <h5 style="font-size:14px; margin:0 0 8px 0; color:var(--warn)">🐍 Python Stack</h5>
           <div style="display:flex; flex-wrap:wrap; gap:6px">
@@ -463,7 +455,6 @@
           </div>
         </div>
 
-        <!-- Hardware Platforms -->
         <div>
           <h5 style="font-size:14px; margin:0 0 8px 0; color:var(--text)">⚙️ Hardware Platforms</h5>
           <div style="display:flex; flex-wrap:wrap; gap:6px">
@@ -474,7 +465,6 @@
           </div>
         </div>
 
-        <!-- Communication Protocols -->
         <div>
           <h5 style="font-size:14px; margin:0 0 8px 0; color:var(--text)">📡 Protocols</h5>
           <div style="display:flex; flex-wrap:wrap; gap:6px">
@@ -488,7 +478,6 @@
           </div>
         </div>
 
-        <!-- Version Control & Tools -->
         <div>
           <h5 style="font-size:14px; margin:0 0 8px 0; color:var(--text)">🔧 Other Tools</h5>
           <div style="display:flex; flex-wrap:wrap; gap:6px">
@@ -508,11 +497,7 @@
       <article class="card" data-tags="pcb power 12v 5v buck mosfet protection driver voltage regulator">
         <div class="thumb">
           <a href="assets/img/power-board.png" target="_blank" rel="noopener">
-            <img
-              src="assets/img/power-board.png"
-              alt="12V to 5V Power Board + MOSFET Driver"
-              loading="lazy"
-            />
+            <img src="assets/img/power-board.png" alt="12V to 5V Power Board + MOSFET Driver" loading="lazy" />
           </a>
         </div>
         <div class="cardBody">
@@ -531,14 +516,12 @@
         </div>
       </article>
 
-      <!-- PCB: Nano Shield -->
       <article class="card" data-tags="pcb nano shield breakout round headers arduino prototyping">
-        <div class="thumb"><a href="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg" target="_blank"><img src="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
-            alt="Arduino Nano Round Shield PCB"
-            data-full="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
-            data-caption="🧠 Arduino Nano Round Shield / Breakout"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg" alt="Arduino Nano Round Shield PCB" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>🧠 Arduino Nano Round Shield 🎯</h3>
           <p>🔩 Clean breakout PCB for rapid prototyping, organized wiring, and compact enclosures. Perfect for sensor projects! 📦</p>
@@ -555,14 +538,12 @@
         </div>
       </article>
 
-      <!-- IoT Services -->
       <article class="card" data-tags="iot arduino esp32 firmware mqtt wifi sensors dht bme relay pump automation">
-        <div class="thumb"><a href="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg" target="_blank"><img src="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
-            alt="Arduino ESP32 IoT Projects"
-            data-full="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg"
-            data-caption="🚀 Arduino/ESP32 IoT Development Services"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/Arduino Nano Round Shield Purple PCB Assembly.jpg" alt="Arduino ESP32 IoT Projects" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>🚀 Arduino/ESP32 IoT Solutions 📡</h3>
           <p>🌐 Custom firmware, sensor integration (DHT, BME, PIR, ultrasonic, ToF), MQTT/WiFi connectivity, relay control, displays, and more! ⚙️</p>
@@ -579,14 +560,12 @@
         </div>
       </article>
 
-      <!-- Python Automation -->
       <article class="card" data-tags="python automation scraper web api cli tools scripts windows selenium">
-        <div class="thumb"><a href="assets/img/Screenshot 2026-02-07 161730.png" target="_blank"><img src="assets/img/Screenshot 2026-02-07 161730.png"
-            alt="Python Automation Tools"
-            data-full="assets/img/Screenshot 2026-02-07 161730.png"
-            data-caption="🐍 Python Automation & Web Tools"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/Screenshot 2026-02-07 161730.png" target="_blank" rel="noopener">
+            <img src="assets/img/Screenshot 2026-02-07 161730.png" alt="Python Automation Tools" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>🐍 Python Automation & Web Scrapers 🤖</h3>
           <p>💻 Custom scripts, CLI tools, web scrapers, dashboards, file automation, API integration, and workflow optimization! 🚀</p>
@@ -603,14 +582,12 @@
         </div>
       </article>
 
-      <!-- NEW: 12V MOSFET Driver Board -->
       <article class="card" data-tags="pcb mosfet driver 12v lowside power switching motor relay blue">
-        <div class="thumb"><a href="assets/img/12V MOSFET Driver Board Low-Side Blue PCB.png" target="_blank"><img src="assets/img/12V MOSFET Driver Board Low-Side Blue PCB.png"
-            alt="12V MOSFET Driver Board Low-Side"
-            data-full="assets/img/12V MOSFET Driver Board Low-Side Blue PCB.png"
-            data-caption="⚡ 12V MOSFET Low-Side Driver Board"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/12V MOSFET Driver Board Low-Side Blue PCB.png" target="_blank" rel="noopener">
+            <img src="assets/img/12V MOSFET Driver Board Low-Side Blue PCB.png" alt="12V MOSFET Driver Board Low-Side" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>⚡ 12V MOSFET Low-Side Driver 🔌</h3>
           <p>🔧 Professional MOSFET driver board for switching high-current loads. Flyback protection, LED indicators, screw terminals! 💪</p>
@@ -627,14 +604,12 @@
         </div>
       </article>
 
-      <!-- NEW: Arduino Nano Breakout 3D -->
       <article class="card" data-tags="pcb arduino nano breakout shield round 3d render easyeda">
-        <div class="thumb"><a href="assets/img/Arduino Nano Breakout Shield Round PCB 3D Render.png" target="_blank"><img src="assets/img/Arduino Nano Breakout Shield Round PCB 3D Render.png"
-            alt="Arduino Nano Round Breakout Shield 3D Render"
-            data-full="assets/img/Arduino Nano Breakout Shield Round PCB 3D Render.png"
-            data-caption="🧠 Arduino Nano Breakout Shield (3D Render)"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/Arduino Nano Breakout Shield Round PCB 3D Render.png" target="_blank" rel="noopener">
+            <img src="assets/img/Arduino Nano Breakout Shield Round PCB 3D Render.png" alt="Arduino Nano Round Breakout Shield 3D Render" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>🧠 Nano Breakout Shield (3D View) 🎨</h3>
           <p>🎯 Professional 3D render of Arduino Nano breakout shield. Clean design, organized layout, perfect for presentations! ✨</p>
@@ -651,14 +626,12 @@
         </div>
       </article>
 
-      <!-- NEW: Arduino Power Shield with Sensor -->
       <article class="card" data-tags="pcb arduino nano power shield sensor display i2c spi round">
-        <div class="thumb"><a href="assets/img/Arduino Nano Power Shield Round PCB Display Sensor.png" target="_blank"><img src="assets/img/Arduino Nano Power Shield Round PCB Display Sensor.png"
-            alt="Arduino Nano Power Shield with Sensor Ports"
-            data-full="assets/img/Arduino Nano Power Shield Round PCB Display Sensor.png"
-            data-caption="🚀 Arduino Nano Power Shield + Sensor Ports"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/Arduino Nano Power Shield Round PCB Display Sensor.png" target="_blank" rel="noopener">
+            <img src="assets/img/Arduino Nano Power Shield Round PCB Display Sensor.png" alt="Arduino Nano Power Shield with Sensor Ports" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>🚀 Nano Power Shield + Sensors 📊</h3>
           <p>⚡ Complete power shield for Arduino Nano with I2C/SPI sensor breakouts, display ports, and power management! 🎯</p>
@@ -675,14 +648,12 @@
         </div>
       </article>
 
-      <!-- NEW: MOSFET Motor Driver Flyback -->
       <article class="card" data-tags="pcb mosfet motor driver flyback diode protection switching">
-        <div class="thumb"><a href="assets/img/MOSFET Motor Driver PCB Flyback Diode Protection.png" target="_blank"><img src="assets/img/MOSFET Motor Driver PCB Flyback Diode Protection.png"
-            alt="MOSFET Motor Driver with Flyback Protection"
-            data-full="assets/img/MOSFET Motor Driver PCB Flyback Diode Protection.png"
-            data-caption="⚙️ MOSFET Motor Driver + Flyback Protection"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/MOSFET Motor Driver PCB Flyback Diode Protection.png" target="_blank" rel="noopener">
+            <img src="assets/img/MOSFET Motor Driver PCB Flyback Diode Protection.png" alt="MOSFET Motor Driver with Flyback Protection" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>⚙️ MOSFET Motor Driver + Flyback 🛡️</h3>
           <p>🔧 Professional motor driver with flyback diode protection, LED indicators, and robust terminal blocks for reliability! 💪</p>
@@ -699,14 +670,12 @@
         </div>
       </article>
 
-      <!-- NEW: Optocoupler Control PC817 -->
       <article class="card" data-tags="pcb optocoupler pc817 isolation control button led screw terminal">
-        <div class="thumb"><a href="assets/img/Optocoupler Control Board PC817 Button LED.png" target="_blank"><img src="assets/img/Optocoupler Control Board PC817 Button LED.png"
-            alt="Optocoupler Control Board PC817 with Button and LED"
-            data-full="assets/img/Optocoupler Control Board PC817 Button LED.png"
-            data-caption="🔐 PC817 Optocoupler Control Board"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/Optocoupler Control Board PC817 Button LED.png" target="_blank" rel="noopener">
+            <img src="assets/img/Optocoupler Control Board PC817 Button LED.png" alt="Optocoupler Control Board PC817 with Button and LED" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>🔐 PC817 Optocoupler Control 💡</h3>
           <p>🛡️ Electrical isolation board with PC817 optocoupler, button input, LED status indicator, and screw terminals! ⚡</p>
@@ -723,14 +692,12 @@
         </div>
       </article>
 
-      <!-- NEW: PNP Transistor Control Alternate -->
       <article class="card" data-tags="pcb pnp transistor control 5v output led button ceramic">
-        <div class="thumb"><a href="assets/img/PNP Transistor Control Board 5V Output (Alternate View).png" target="_blank"><img src="assets/img/PNP Transistor Control Board 5V Output (Alternate View).png"
-            alt="PNP Transistor Control Board 5V Output"
-            data-full="assets/img/PNP Transistor Control Board 5V Output (Alternate View).png"
-            data-caption="🔌 PNP Transistor Control Board (5V)"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/PNP Transistor Control Board 5V Output (Alternate View).png" target="_blank" rel="noopener">
+            <img src="assets/img/PNP Transistor Control Board 5V Output (Alternate View).png" alt="PNP Transistor Control Board 5V Output" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>🔌 PNP Transistor Control (5V) ⚡</h3>
           <p>🔧 Simple yet effective PNP transistor control board with ceramic capacitors, LED indicator, and 5V output! 💡</p>
@@ -747,14 +714,12 @@
         </div>
       </article>
 
-      <!-- NEW: PNP LED Control with Electrolytic -->
       <article class="card" data-tags="pcb pnp transistor led control electrolytic capacitor button">
-        <div class="thumb"><a href="assets/img/PNP Transistor LED Control PCB Electrolytic Capacitor.png" target="_blank"><img src="assets/img/PNP Transistor LED Control PCB Electrolytic Capacitor.png"
-            alt="PNP Transistor LED Control with Electrolytic Capacitor"
-            data-full="assets/img/PNP Transistor LED Control PCB Electrolytic Capacitor.png"
-            data-caption="💡 PNP LED Control + Electrolytic Cap"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/PNP Transistor LED Control PCB Electrolytic Capacitor.png" target="_blank" rel="noopener">
+            <img src="assets/img/PNP Transistor LED Control PCB Electrolytic Capacitor.png" alt="PNP Transistor LED Control with Electrolytic Capacitor" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>💡 PNP LED Control + Cap 🔋</h3>
           <p>⚡ PNP transistor-based LED control with electrolytic capacitor for stable power, button input, and status LED! 🎯</p>
@@ -771,14 +736,12 @@
         </div>
       </article>
 
-      <!-- NEW: TXS0108E Level Shifter -->
       <article class="card" data-tags="pcb level shifter txs0108e spi i2c sensor display 3.3v 5v breakout">
-        <div class="thumb"><a href="assets/img/TXS0108E Level Shifter SPI Display Sensor PCB.png" target="_blank"><img src="assets/img/TXS0108E Level Shifter SPI Display Sensor PCB.png"
-            alt="TXS0108E Level Shifter SPI Display Sensor Breakout"
-            data-full="assets/img/TXS0108E Level Shifter SPI Display Sensor PCB.png"
-            data-caption="🔄 TXS0108E Level Shifter Breakout"
-            loading="lazy"
-          /></a></div>
+        <div class="thumb">
+          <a href="assets/img/TXS0108E Level Shifter SPI Display Sensor PCB.png" target="_blank" rel="noopener">
+            <img src="assets/img/TXS0108E Level Shifter SPI Display Sensor PCB.png" alt="TXS0108E Level Shifter SPI Display Sensor Breakout" loading="lazy" />
+          </a>
+        </div>
         <div class="cardBody">
           <h3>🔄 TXS0108E Level Shifter 📊</h3>
           <p>⚡ Professional bidirectional level shifter (3.3V ↔ 5V) for SPI/I2C displays and sensors. Clean layout, easy wiring! 🎯</p>
@@ -799,7 +762,7 @@
 
     <!-- DETAILS: PCB -->
     <h3 class="sectionTitle" id="pcb">🧩 PCB Design Services <small>(EasyEDA, custom boards 🎨)</small></h3>
-    
+
     <section class="detail">
       <div class="detailGrid">
         <div>
@@ -928,23 +891,22 @@
 
     <!-- SHOP / PRODUCTS FOR SALE -->
     <h3 class="sectionTitle" id="shop">🛒 Shop - Ready-Made Products <small>(buy now, fast shipping! 📦)</small></h3>
-    
+
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:16px; margin-bottom:26px">
-      
+
       <!-- Product 1: Power Board -->
       <div class="detail" style="padding:0; overflow:hidden">
         <div style="height:200px; background:rgba(0,0,0,.35); overflow:hidden">
-          <img src="assets/img/power-board.png" alt="12V to 5V Power Board for sale" 
-               style="width:100%; height:100%; object-fit:cover; cursor:pointer"
-               class="js-openImg" data-full="assets/img/power-board.png" data-caption="⚡ 12V → 5V Power Board PCB">
+          <img src="assets/img/power-board.png" alt="12V to 5V Power Board for sale"
+               style="width:100%; height:100%; object-fit:cover; cursor:pointer">
         </div>
         <div style="padding:16px">
           <h4 style="font-size:18px; margin:0 0 6px 0">⚡ 12V → 5V Power Board PCB</h4>
           <p style="margin:0 0 12px 0; color:var(--muted); font-size:13px">
-            Round PCB with buck converter footprint, MOSFET driver, protection circuits. 
+            Round PCB with buck converter footprint, MOSFET driver, protection circuits.
             Perfect for IoT nodes, pumps, LED strips!
           </p>
-          
+
           <div style="background:rgba(122,162,255,.08); border:1px solid rgba(122,162,255,.25); border-radius:12px; padding:12px; margin-bottom:12px">
             <div style="display:flex; justify-content:space-between; align-items:center">
               <div>
@@ -964,12 +926,11 @@
           </div>
 
           <div style="display:flex; gap:8px">
-            <a href="mailto:your.email@example.com?subject=Buy%20Power%20Board%20PCB" class="miniBtn primary" style="flex:1; justify-content:center">
-              🛒 Order via Email
-            </a>
-            <a href="#" target="_blank" class="miniBtn ghost" style="flex:1; justify-content:center">
-              🌐 Tindie/eBay
-            </a>
+            <!-- ✅ NEW: Copy email + subject instead of mailto-only -->
+            <button class="miniBtn primary js-orderEmail" data-subject="Buy Power Board PCB" style="flex:1">
+              🛒 Order via Email (Copy)
+            </button>
+            <a href="#contact" class="miniBtn ghost" style="flex:1">📩 Contact</a>
           </div>
         </div>
       </div>
@@ -977,17 +938,16 @@
       <!-- Product 2: Nano Shield -->
       <div class="detail" style="padding:0; overflow:hidden">
         <div style="height:200px; background:rgba(0,0,0,.35); overflow:hidden">
-          <img src="assets/img/IMG_20260205_124823.jpg" alt="Arduino Nano Shield for sale" 
-               style="width:100%; height:100%; object-fit:cover; cursor:pointer"
-               class="js-openImg" data-full="assets/img/IMG_20260205_124823.jpg" data-caption="🧠 Arduino Nano Round Shield">
+          <img src="assets/img/IMG_20260205_124823.jpg" alt="Arduino Nano Shield for sale"
+               style="width:100%; height:100%; object-fit:cover; cursor:pointer">
         </div>
         <div style="padding:16px">
           <h4 style="font-size:18px; margin:0 0 6px 0">🧠 Arduino Nano Round Shield</h4>
           <p style="margin:0 0 12px 0; color:var(--muted); font-size:13px">
-            Professional breakout board for Arduino Nano. Clean wiring, labeled pins, 
+            Professional breakout board for Arduino Nano. Clean wiring, labeled pins,
             perfect for sensor projects and enclosures!
           </p>
-          
+
           <div style="background:rgba(125,255,204,.08); border:1px solid rgba(125,255,204,.25); border-radius:12px; padding:12px; margin-bottom:12px">
             <div style="display:flex; justify-content:space-between; align-items:center">
               <div>
@@ -1007,12 +967,10 @@
           </div>
 
           <div style="display:flex; gap:8px">
-            <a href="mailto:your.email@example.com?subject=Buy%20Nano%20Shield" class="miniBtn primary" style="flex:1; justify-content:center">
-              🛒 Order via Email
-            </a>
-            <a href="#" target="_blank" class="miniBtn ghost" style="flex:1; justify-content:center">
-              🌐 Tindie/eBay
-            </a>
+            <button class="miniBtn primary js-orderEmail" data-subject="Buy Nano Shield" style="flex:1">
+              🛒 Order via Email (Copy)
+            </button>
+            <a href="#contact" class="miniBtn ghost" style="flex:1">📩 Contact</a>
           </div>
         </div>
       </div>
@@ -1026,10 +984,10 @@
         <div style="padding:16px">
           <h4 style="font-size:18px; margin:0 0 6px 0">🎨 Need Something Custom?</h4>
           <p style="margin:0 0 12px 0; color:var(--muted); font-size:13px">
-            Don't see what you need? I can design and manufacture custom PCBs, 
+            Don't see what you need? I can design and manufacture custom PCBs,
             Arduino projects, and IoT solutions tailored to your requirements!
           </p>
-          
+
           <div style="background:rgba(255,210,122,.08); border:1px solid rgba(255,210,122,.25); border-radius:12px; padding:12px; margin-bottom:12px">
             <div style="font-size:16px; font-weight:600; color:var(--warn); margin-bottom:4px">Starting from £30</div>
             <div style="font-size:12px; color:var(--muted)">
@@ -1045,12 +1003,8 @@
           </div>
 
           <div style="display:flex; gap:8px">
-            <a href="#pricing" class="miniBtn primary" style="flex:1; justify-content:center">
-              💰 See Pricing
-            </a>
-            <a href="#contact" class="miniBtn ghost" style="flex:1; justify-content:center">
-              📧 Get Quote
-            </a>
+            <a href="#pricing" class="miniBtn primary" style="flex:1">💰 See Pricing</a>
+            <a href="#contact" class="miniBtn ghost" style="flex:1">📧 Get Quote</a>
           </div>
         </div>
       </div>
@@ -1093,23 +1047,22 @@
           </p>
         </div>
       </div>
-      
+
       <div class="note" style="margin-top:12px">
-        💡 <b>Bulk orders?</b> Contact me for discounts on 10+ units! Perfect for workshops, 
+        💡 <b>Bulk orders?</b> Contact me for discounts on 10+ units! Perfect for workshops,
         schools, or maker groups. 🎓
       </div>
     </div>
 
     <!-- PRICING -->
     <h3 class="sectionTitle" id="pricing">💰 Pricing <small>(competitive rates, great value 🎯)</small></h3>
-    
+
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:16px; margin-bottom:26px">
-      
-      <!-- PCB Design Pricing -->
+
       <div class="detail" style="padding:20px">
         <h4 style="font-size:20px; margin-bottom:8px">🧩 PCB Design</h4>
         <p class="sub" style="margin-bottom:16px">Custom circuit board design in EasyEDA</p>
-        
+
         <div style="background:rgba(122,162,255,.08); border:1px solid rgba(122,162,255,.25); border-radius:14px; padding:16px; margin-bottom:12px">
           <div style="font-size:32px; font-weight:700; color:var(--accent)">£30 - £120</div>
           <div style="font-size:13px; color:var(--muted); margin-top:4px">per board design</div>
@@ -1133,11 +1086,10 @@
         </div>
       </div>
 
-      <!-- Arduino/ESP32 IoT Pricing -->
       <div class="detail" style="padding:20px">
         <h4 style="font-size:20px; margin-bottom:8px">🚀 Arduino/ESP32 IoT</h4>
         <p class="sub" style="margin-bottom:16px">Custom firmware & IoT solutions</p>
-        
+
         <div style="background:rgba(125,255,204,.08); border:1px solid rgba(125,255,204,.25); border-radius:14px; padding:16px; margin-bottom:12px">
           <div style="font-size:32px; font-weight:700; color:var(--accent2)">£50 - £250</div>
           <div style="font-size:13px; color:var(--muted); margin-top:4px">per project</div>
@@ -1161,11 +1113,10 @@
         </div>
       </div>
 
-      <!-- Python Automation Pricing -->
       <div class="detail" style="padding:20px">
         <h4 style="font-size:20px; margin-bottom:8px">🐍 Python Automation</h4>
         <p class="sub" style="margin-bottom:16px">Scripts, scrapers & automation tools</p>
-        
+
         <div style="background:rgba(255,210,122,.08); border:1px solid rgba(255,210,122,.25); border-radius:14px; padding:16px; margin-bottom:12px">
           <div style="font-size:32px; font-weight:700; color:var(--warn)">£25 - £180</div>
           <div style="font-size:13px; color:var(--muted); margin-top:4px">per script/tool</div>
@@ -1191,10 +1142,9 @@
 
     </div>
 
-    <!-- Pricing Notes -->
     <div class="detail" style="padding:18px; margin-bottom:26px">
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px">
-        
+
         <div>
           <h4 style="font-size:16px; margin-bottom:6px">💎 What You Get</h4>
           <ul style="margin:0; padding-left:18px; color:var(--muted); font-size:13px">
@@ -1238,38 +1188,33 @@
       </div>
 
       <div class="note" style="margin-top:14px; font-size:13px">
-        💡 <b>Starter Rates:</b> These are competitive introductory prices. As I build reviews and portfolio, rates may increase. 
+        💡 <b>Starter Rates:</b> These are competitive introductory prices. As I build reviews and portfolio, rates may increase.
         Book now for best value! 🎯
       </div>
     </div>
 
     <!-- FAQ -->
     <h3 class="sectionTitle" id="faq">❓ Frequently Asked Questions <small>(common questions answered 💬)</small></h3>
-    
+
     <div style="display:grid; gap:12px; margin-bottom:26px">
-      
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">🌍 Do you work with international clients?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
-          <b>Yes, absolutely!</b> I work remotely with clients worldwide. All communication via email, 
-          video calls if needed. Payment through PayPal (international) or Fiverr. Time zone differences 
+          <b>Yes, absolutely!</b> I work remotely with clients worldwide. All communication via email,
+          video calls if needed. Payment through PayPal (international) or Fiverr. Time zone differences
           are not a problem — I'm flexible with schedules. 🌐
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">📦 Do you provide the physical components?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
-          <b>No, I provide the design/code only.</b> For PCB projects, you'll receive Gerber files 
-          + BOM — you order boards from manufacturers like JLCPCB, PCBWay (very cheap!). For Arduino/ESP32 
-          projects, you purchase the components yourself (I provide exact part numbers and links). 
-          This keeps costs low and gives you flexibility! 💡
+          <b>No, I provide the design/code only.</b> For PCB projects, you'll receive Gerber files
+          + BOM — you order boards from manufacturers like JLCPCB, PCBWay. For Arduino/ESP32
+          projects, you purchase the components yourself (I provide exact part numbers and links).
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">⏰ How long does a typical project take?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
@@ -1277,101 +1222,75 @@
           • Simple PCB/scripts: <b>2-4 days</b> ⚡<br>
           • Medium Arduino/ESP32 projects: <b>5-7 days</b> 🚀<br>
           • Complex multi-sensor IoT systems: <b>1-2 weeks</b> 🔧<br>
-          Rush delivery available (+40-80% fee). I always give you a realistic timeline before starting!
+          Rush delivery available (+40-80% fee).
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">🔄 What if I need changes or revisions?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
-          <b>Minor tweaks are free!</b> Small changes (fixing bugs, adjusting values, 
-          minor wiring changes) are included in the support period (1-2 weeks). Major changes 
-          (new features, different sensors, complete redesign) are quoted separately. 
-          I want you to be happy with the result! ✅
+          <b>Minor tweaks are free!</b> Small changes are included in the support period. Major changes are quoted separately.
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">💰 How does payment work?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
           <b>Simple and secure:</b><br>
-          • Projects under £150: <b>Full payment on delivery</b> 💳<br>
-          • Projects £150+: <b>50% upfront, 50% on delivery</b> 📋<br>
-          • Payment via PayPal, bank transfer (UK), or Fiverr<br>
-          • You get all files only after final payment ✅
+          • Projects under £150: <b>Full payment on delivery</b><br>
+          • Projects £150+: <b>50% upfront, 50% on delivery</b><br>
+          • Payment via PayPal, bank transfer (UK), or Fiverr
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">📚 Do you provide documentation?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
-          <b>Yes, comprehensive docs!</b> Every project includes:<br>
-          • PCB: Schematic, BOM, Gerber files, assembly notes 🧩<br>
-          • Arduino/ESP32: Commented code, wiring diagram, pin mapping, setup guide 🚀<br>
-          • Python: README, requirements.txt, usage examples, comments in code 🐍<br>
-          Everything you need to understand and use the project! 📖
+          <b>Yes!</b> Every project includes docs: schematic/BOM/gerbers for PCB, wiring + setup for firmware, README for Python.
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">🛠️ What if something doesn't work?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
-          <b>I stand behind my work!</b> If there's a bug in the code or error in the design, 
-          I fix it for free during the support period (1-2 weeks). If you have assembly/wiring 
-          questions, I help troubleshoot. However, damaged components or incorrect assembly 
-          are not covered. Always test carefully! 🔍
+          <b>I stand behind my work!</b> If there's a bug in the code or error in the design, I fix it for free during support.
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">🔐 Can you help with commercial/production projects?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
-          <b>Yes, with proper agreement!</b> For commercial use or production runs, we'll discuss 
-          licensing and usage rights. Prices may be higher for commercial projects. I can also 
-          sign NDAs if needed. Small batch production (10-100 units) is welcome! 🏭
+          <b>Yes, with proper agreement!</b> For commercial use or production runs, we discuss licensing and rights.
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">📧 How do I get started?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
-          <b>Super easy!</b> Just email me (or use the template below) with your project details. 
-          I'll reply within 24 hours with a quote, timeline, and any questions. If you're happy, 
-          we start! No commitment needed for the initial quote — it's always free! 🎯
+          <b>Super easy!</b> Email me with your project details. I reply within 24 hours with a quote.
         </p>
       </div>
 
-      <!-- FAQ Item -->
       <div class="detail" style="padding:16px">
         <h4 style="font-size:16px; margin:0 0 8px 0">🎓 Can you teach/explain how things work?</h4>
         <p style="margin:0; color:var(--muted); font-size:14px">
-          <b>Absolutely!</b> I always include comments in code and explain key concepts in the 
-          documentation. If you want to learn, I can add extra explanations (might affect price 
-          slightly). I enjoy helping people understand electronics and programming! 📚
+          <b>Absolutely!</b> I can add extra explanations and learning-friendly notes if you want.
         </p>
       </div>
-
     </div>
 
     <!-- CONTACT -->
     <h3 class="sectionTitle" id="contact">📩 Get in Touch <small>(multiple ways to reach me! 🚀)</small></h3>
-    
-    <!-- Simple Contact Methods -->
+
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px; margin-bottom:30px">
-      
+
       <!-- Direct Email -->
       <div class="detail" style="padding:28px; text-align:center">
         <div style="font-size:48px; margin-bottom:16px">📧</div>
         <h4 style="font-size:20px; margin-bottom:8px">Email Me Directly</h4>
         <p class="sub" style="margin-bottom:18px">Click to copy my email address!</p>
-        <button id="copyEmailBtn" class="btn primary" style="width:100%; font-size:15px; padding:14px; cursor:pointer">
-          📧 sforinciprian@gmail.com
+        <button id="copyEmailBtn" class="btn primary" style="width:100%; font-size:15px; padding:14px">
+          📧 sflorinciprian@gmail.com
         </button>
         <p id="emailCopyStatus" style="font-size:13px; color:var(--muted); margin-top:12px">⚡ Click to copy • I reply within 24h!</p>
       </div>
@@ -1379,7 +1298,7 @@
       <!-- Social Links -->
       <div class="detail" style="padding:28px">
         <h4 style="font-size:18px; margin-bottom:16px; text-align:center">🔗 Connect on Social</h4>
-        
+
         <div style="display:flex; flex-direction:column; gap:12px">
           <a href="https://github.com/metusalem696" target="_blank" rel="noopener"
              style="display:flex; align-items:center; gap:12px; padding:14px; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:12px; text-decoration:none; transition: all 0.2s">
@@ -1417,7 +1336,7 @@
       <div class="detail" style="padding:28px">
         <h4 style="font-size:18px; margin-bottom:12px; text-align:center">📋 Message Template</h4>
         <p class="sub" style="margin-bottom:16px; text-align:center">Copy this for structured messages:</p>
-        
+
         <div style="background:rgba(0,0,0,.3); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:14px; font-size:13px; line-height:1.8; font-family:monospace">
 <b>🧠 Platform:</b> (Arduino/ESP32 model)<br>
 <b>🔌 Components:</b> (sensors/parts)<br>
@@ -1426,11 +1345,11 @@
 <b>⏰ Deadline:</b> (when you need it)<br>
 <b>💰 Budget:</b> (your range)
         </div>
-        
+
         <button id="copyTemplateBtn" class="btn ghost" style="width:100%; font-size:14px">
           📋 Copy Template
         </button>
-        
+
         <p style="font-size:12px; color:var(--muted); margin-top:12px; text-align:center">
           💡 Paste in email for quick quotes!
         </p>
@@ -1468,11 +1387,10 @@
     <div class="detail" style="padding:28px; margin-top:24px">
       <h4 style="font-size:20px; margin-bottom:10px">💬 Client Comments & Reviews</h4>
       <p class="sub" style="margin-bottom:20px">
-        📝 Share your experience, ask questions, or leave feedback! 
+        📝 Share your experience, ask questions, or leave feedback!
         Sign in with <b>GitHub</b> to post comments.
       </p>
-      
-      <!-- Utterances Comments Widget -->
+
       <div id="comments-container">
         <script src="https://utteranc.es/client.js"
                 repo="metusalem696/metusalem696.github.io"
@@ -1482,9 +1400,9 @@
                 async>
         </script>
       </div>
-      
+
       <div class="note" style="margin-top:16px">
-        ℹ️ <b>How it works:</b> Click "Sign in with GitHub" above, authorize the app, then write your comment. 
+        ℹ️ <b>How it works:</b> Click "Sign in with GitHub" above, authorize the app, then write your comment.
         All comments are stored as GitHub issues - fully transparent and spam-protected! 🔒
       </div>
     </div>
@@ -1495,52 +1413,132 @@
     </footer>
   </main>
 
+  <!-- Toast UI -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="dot"></div>
+    <div class="msg">Copied!</div>
+  </div>
+
   <script>
+    // =========================================================
+    // ✅ IMPORTANT: CHANGE YOUR EMAIL HERE (ONLY ONCE)
+    // =========================================================
+    const CONTACT_EMAIL = "your.email@example.com"; // <-- change to your real email
+
     // ---- Utils ----
     const $ = (s, el=document) => el.querySelector(s);
     const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
 
+    // ---- Toast ----
+    let toastTimer = null;
+    function showToast(message, type="ok"){
+      const t = $("#toast");
+      if (!t) return;
+      t.classList.remove("ok","bad");
+      t.classList.add(type === "bad" ? "bad" : "ok");
+      const msg = t.querySelector(".msg");
+      if (msg) msg.textContent = message;
+      t.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=> t.classList.remove("show"), 2200);
+    }
+
+    // ---- Robust clipboard copy (secure + fallback) ----
+    async function copyText(text){
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      // Fallback (works on file:// sometimes)
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      ta.style.top = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      if (!ok) throw new Error("Clipboard blocked");
+    }
+
     // ---- Year ----
-    $("#year").textContent = new Date().getFullYear();
+    const yearEl = $("#year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     // ---- Copy link ----
-    $("#copyLinkBtn").addEventListener("click", async () => {
-      try{
-        await navigator.clipboard.writeText(location.href.split("#")[0]);
-        $("#copyLinkBtn").textContent = "✅ Link Copied!";
-        setTimeout(()=> $("#copyLinkBtn").textContent="🔗 Share Link", 1500);
-      }catch(e){
-        alert("📋 Clipboard blocked. Please copy manually from address bar.");
-      }
-    });
+    const copyLinkBtn = $("#copyLinkBtn");
+    if (copyLinkBtn) {
+      copyLinkBtn.addEventListener("click", async () => {
+        try{
+          const clean = location.href.split("#")[0];
+          await copyText(clean);
+          showToast("✅ Link copied! Share it anywhere.", "ok");
+          copyLinkBtn.textContent = "✅ Link Copied!";
+          setTimeout(()=> copyLinkBtn.textContent="🔗 Share Link", 1500);
+        }catch(e){
+          showToast("❌ Clipboard blocked. Copy from address bar.", "bad");
+        }
+      });
+    }
 
     // ---- Copy email button ----
     const copyEmailBtn = $("#copyEmailBtn");
     const emailCopyStatus = $("#emailCopyStatus");
-    
+
+    function setEmailUI(){
+      if (copyEmailBtn) copyEmailBtn.textContent = "📧 " + CONTACT_EMAIL;
+    }
+    setEmailUI();
+
     if (copyEmailBtn) {
       copyEmailBtn.addEventListener("click", async () => {
-        const email = "your.email@example.com";
         try {
-          await navigator.clipboard.writeText(email);
+          await copyText(CONTACT_EMAIL);
+
           copyEmailBtn.textContent = "✅ Email Copied!";
           copyEmailBtn.style.background = "rgba(125,255,204,.15)";
           copyEmailBtn.style.borderColor = "rgba(125,255,204,.4)";
-          emailCopyStatus.textContent = "✅ Copied! Now paste it in your email app!";
-          emailCopyStatus.style.color = "var(--ok)";
-          
+
+          if (emailCopyStatus) {
+            emailCopyStatus.textContent = "✅ Copied! Now paste it in your email app!";
+            emailCopyStatus.style.color = "var(--ok)";
+          }
+
+          showToast("✅ Email copied. Paste it in Gmail/Outlook (Ctrl+V).", "ok");
+
           setTimeout(() => {
-            copyEmailBtn.textContent = "📧 sflorinciprian@gmail.com";
+            setEmailUI();
             copyEmailBtn.style.background = "";
             copyEmailBtn.style.borderColor = "";
-            emailCopyStatus.textContent = "⚡ Click to copy • I reply within 24h!";
-            emailCopyStatus.style.color = "var(--muted)";
+
+            if (emailCopyStatus) {
+              emailCopyStatus.textContent = "⚡ Click to copy • I reply within 24h!";
+              emailCopyStatus.style.color = "var(--muted)";
+            }
           }, 3000);
+
         } catch(e) {
-          alert("📧 Copy this email:\n\n" + email);
+          // prompt is more copy-friendly than alert
+          prompt("📧 Copy this email:", CONTACT_EMAIL);
         }
       });
     }
+
+    // ---- Order buttons (copy email + subject) ----
+    $$(".js-orderEmail").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const subject = btn.getAttribute("data-subject") || "Order";
+        try{
+          await copyText(CONTACT_EMAIL);
+          showToast(`✅ Email copied. Subject idea: "${subject}"`, "ok");
+        }catch(e){
+          prompt(`📧 Copy this email (Subject: ${subject})`, CONTACT_EMAIL);
+        }
+      });
+    });
 
     // ---- Copy template ----
     const template = `🧠 Platform: (Arduino Nano/Uno/Mega or ESP32 exact model)
@@ -1549,17 +1547,20 @@
 🎯 Functionality: (exact behavior you want - step by step)
 ⏰ Deadline: (when do you need it?)
 💰 Budget: (your budget range)`;
-    
-    $("#copyTemplateBtn").addEventListener("click", async () => {
-      try{
-        await navigator.clipboard.writeText(template);
-        $("#copyTemplateBtn").textContent = "✅ Copied!";
-        setTimeout(()=> $("#copyTemplateBtn").textContent="📋 Copy Template", 1500);
-      }catch(e){
-        alert("📋 Clipboard blocked. Copy manually:\n\n" + template);
-      }
-    });
 
+    const copyTemplateBtn = $("#copyTemplateBtn");
+    if (copyTemplateBtn) {
+      copyTemplateBtn.addEventListener("click", async () => {
+        try{
+          await copyText(template);
+          copyTemplateBtn.textContent = "✅ Copied!";
+          showToast("✅ Template copied. Paste it in your email.", "ok");
+          setTimeout(()=> copyTemplateBtn.textContent="📋 Copy Template", 1500);
+        }catch(e){
+          prompt("📋 Clipboard blocked. Copy manually:", template);
+        }
+      });
+    }
   </script>
 </body>
 </html>
