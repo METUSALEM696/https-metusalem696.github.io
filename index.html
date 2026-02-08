@@ -54,16 +54,22 @@
     }
     .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
     .logo{
-      width:44px; height:44px; border-radius:14px;
+      width:80px; height:80px; border-radius:18px;
       box-shadow: var(--shadow);
       flex:0 0 auto;
       overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .logo:hover{
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
     }
     .logo img{
       width:100%; height:100%; object-fit:cover;
     }
-    .brand h1{font-size:16px; margin:0}
-    .brand p{margin:0; font-size:12.5px; color:var(--muted)}
+    .brand h1{font-size:20px; margin:0; font-weight:800}
+    .brand p{margin:0; font-size:13.5px; color:var(--muted)}
     nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
     .chip{
       display:inline-flex; align-items:center; gap:8px;
@@ -346,9 +352,11 @@
   <header>
     <div class="top">
       <a class="brand" href="#top">
-        <div class="logo" aria-hidden="true">
-          <img src="assets/img/logo.png" alt="METUSALEM696 Logo" />
-        </div>
+        <a href="assets/img/hero-banner.png" target="_blank" rel="noopener" style="display:block; line-height:0;">
+          <div class="logo" aria-hidden="true">
+            <img src="assets/img/logo.png" alt="METUSALEM696 Logo" />
+          </div>
+        </a>
         <div>
           <h1>⚡ METUSALEM696</h1>
           <p>🧩 PCB • 🚀 Arduino/ESP32 • 🐍 Python Automation</p>
