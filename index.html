@@ -1367,51 +1367,48 @@
       <!-- Contact Form -->
       <div class="detail" style="padding:24px">
         <h4 style="font-size:18px; margin-bottom:12px">✉️ Send Message Directly</h4>
-        <p class="sub" style="margin-bottom:16px">Fill the form below and I'll reply within 24 hours!</p>
+        <p class="sub" style="margin-bottom:16px">Fill the form below - it will open your email app!</p>
         
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display:flex; flex-direction:column; gap:14px">
-          <input type="hidden" name="_subject" value="New message from portfolio!" />
-          <input type="hidden" name="_next" value="https://metusalem696.github.io/#contact" />
-          
+        <form id="contactForm" style="display:flex; flex-direction:column; gap:14px">
           <div>
             <label style="display:block; margin-bottom:6px; font-size:13px; color:var(--muted)">Name *</label>
-            <input type="text" name="name" required 
+            <input type="text" id="contactName" required 
                    style="width:100%; padding:11px 14px; background:rgba(0,0,0,.3); border:1px solid var(--line); border-radius:10px; color:var(--text); font-size:14px" 
                    placeholder="Your name" />
           </div>
           
           <div>
             <label style="display:block; margin-bottom:6px; font-size:13px; color:var(--muted)">Email *</label>
-            <input type="email" name="_replyto" required 
+            <input type="email" id="contactEmail" required 
                    style="width:100%; padding:11px 14px; background:rgba(0,0,0,.3); border:1px solid var(--line); border-radius:10px; color:var(--text); font-size:14px" 
                    placeholder="your@email.com" />
           </div>
           
           <div>
             <label style="display:block; margin-bottom:6px; font-size:13px; color:var(--muted)">Project Type</label>
-            <select name="project_type" 
+            <select id="contactType" 
                     style="width:100%; padding:11px 14px; background:rgba(0,0,0,.3); border:1px solid var(--line); border-radius:10px; color:var(--text); font-size:14px">
-              <option value="pcb">🧩 PCB Design</option>
-              <option value="iot">🚀 Arduino/ESP32 IoT</option>
-              <option value="python">🐍 Python Automation</option>
-              <option value="shop">🛒 Buy Ready-made PCB</option>
-              <option value="other">💬 Other / Question</option>
+              <option value="PCB Design">🧩 PCB Design</option>
+              <option value="Arduino/ESP32 IoT">🚀 Arduino/ESP32 IoT</option>
+              <option value="Python Automation">🐍 Python Automation</option>
+              <option value="Buy Ready-made PCB">🛒 Buy Ready-made PCB</option>
+              <option value="Other / Question">💬 Other / Question</option>
             </select>
           </div>
           
           <div>
             <label style="display:block; margin-bottom:6px; font-size:13px; color:var(--muted)">Message *</label>
-            <textarea name="message" required rows="5" 
+            <textarea id="contactMessage" required rows="5" 
                       style="width:100%; padding:11px 14px; background:rgba(0,0,0,.3); border:1px solid var(--line); border-radius:10px; color:var(--text); font-size:14px; resize:vertical; font-family:inherit" 
                       placeholder="Describe your project or question..."></textarea>
           </div>
           
           <button type="submit" class="miniBtn primary" style="width:100%; padding:12px; font-size:14px">
-            📨 Send Message
+            📨 Send via Email
           </button>
           
           <p style="font-size:12px; color:var(--muted); margin:4px 0 0 0; text-align:center">
-            ⚡ You'll receive a confirmation email + I'll reply within 24h!
+            ⚡ Opens your email app with pre-filled message!
           </p>
         </form>
       </div>
@@ -1427,7 +1424,7 @@
             <div style="flex:1">
               <div style="font-size:12px; color:var(--muted)">Email</div>
               <a href="mailto:your.email@example.com" style="color:var(--accent); text-decoration:none; font-size:14px; font-weight:600">
-                your.email@example.com
+                sflorinciprian@gmail.com
               </a>
             </div>
           </div>
@@ -1540,6 +1537,39 @@
         alert("📋 Clipboard blocked. Copy manually:\n\n" + template);
       }
     });
+
+    // ---- Contact Form Handler ----
+    const contactForm = $("#contactForm");
+    if (contactForm) {
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const name = $("#contactName").value;
+        const email = $("#contactEmail").value;
+        const type = $("#contactType").value;
+        const message = $("#contactMessage").value;
+        
+        // Build email body
+        const emailBody = `Hi! I'm ${name} (${email})
+
+PROJECT TYPE: ${type}
+
+MESSAGE:
+${message}
+
+---
+Sent from your portfolio website`;
+        
+        // Create mailto link
+        const mailtoLink = `mailto:your.email@example.com?subject=Portfolio Inquiry - ${type}&body=${encodeURIComponent(emailBody)}`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Show success message
+        alert("✅ Opening your email app!\n\nIf it doesn't open automatically, please email me at: your.email@example.com");
+      });
+    }
 
   </script>
 </body>
