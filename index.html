@@ -22,7 +22,6 @@
   <meta name="twitter:image" content="https://metusalem696.github.io/assets/img/hero-banner.png" />
   
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "METUSALEM696", "url": "https://metusalem696.github.io/", "image": "https://metusalem696.github.io/assets/img/logo.png", "sameAs": ["https://github.com/metusalem696", "https://fiverr.com/metusalem696"], "jobTitle": "Electronics Engineer", "knowsAbout": ["PCB design", "Arduino", "ESP32", "IoT", "Python automation", "Embedded systems"], "address": {"@type": "PostalAddress", "addressCountry": "GB", "addressRegion": "Shropshire"}}</script>
-  
 
   <style>
     :root{
@@ -355,164 +354,164 @@
       nav{justify-content:flex-start}
       .top{flex-wrap:wrap}
     }
-/* Accessibility: focus ring */
-:focus-visible{
-  outline: 2px solid rgba(122,162,255,.85);
-  outline-offset: 3px;
-  border-radius: 12px;
-}
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  *{transition:none !important; animation:none !important}
-}
+    /* Accessibility: focus ring */
+    :focus-visible{
+      outline: 2px solid rgba(122,162,255,.85);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
 
-/* Project filter bar */
-.filterBar{
-  margin: 10px 0 18px;
-  padding: 12px;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.03);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-}
-.filterInput{
-  width: 100%;
-  padding: 11px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.25);
-  color: var(--text);
-  font-size: 14px;
-  outline: none;
-}
-.filterInput::placeholder{color: rgba(168,179,230,.75)}
-.filterChips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  align-items:center;
-}
-.chipBtn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.04);
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 700;
-  user-select: none;
-}
-.chipBtn:hover{border-color: rgba(122,162,255,.35); color: var(--text)}
-.chipBtn.active{
-  background: rgba(122,162,255,.14);
-  border-color: rgba(122,162,255,.45);
-  color: var(--text);
-}
-.filterStatus{
-  font-size: 12.5px;
-  color: var(--muted);
-}
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *{transition:none !important; animation:none !important}
+    }
 
-/* Back-to-top button */
-.backTop{
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(15,23,49,.88);
-  backdrop-filter: blur(10px);
-  color: var(--text);
-  box-shadow: 0 18px 46px rgba(0,0,0,.35);
-  cursor: pointer;
-  z-index: 10001;
-  opacity: 0;
-  transform: translateY(8px);
-  pointer-events: none;
-  transition: opacity .18s ease, transform .18s ease, border-color .18s ease;
-}
-.backTop.show{
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-.backTop:hover{border-color: rgba(122,162,255,.35)}
+    /* Project filter bar */
+    .filterBar{
+      margin: 10px 0 18px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .filterInput{
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }
+    .filterInput::placeholder{color: rgba(168,179,230,.75)}
+    .filterChips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    .chipBtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      user-select: none;
+    }
+    .chipBtn:hover{border-color: rgba(122,162,255,.35); color: var(--text)}
+    .chipBtn.active{
+      background: rgba(122,162,255,.14);
+      border-color: rgba(122,162,255,.45);
+      color: var(--text);
+    }
+    .filterStatus{
+      font-size: 12.5px;
+      color: var(--muted);
+    }
 
-/* Lightbox */
-.lb{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  background: rgba(0,0,0,.68);
-  z-index: 10002;
-}
-.lb.open{display:flex}
-.lbCard{
-  width:min(1100px, 100%);
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(15,23,49,.92);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 26px 90px rgba(0,0,0,.65);
-  overflow:hidden;
-  position:relative;
-}
-.lbTop{
-  display:flex; align-items:center; justify-content:space-between; gap:10px;
-  padding:10px 12px;
-  border-bottom:1px solid rgba(255,255,255,.10);
-}
-.lbTop .cap{
-  color:var(--muted);
-  font-size:13px;
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap
-}
-.lbTop .lbBtns{display:flex; gap:8px; flex-wrap:wrap}
-.lbBtn{
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
-  color:var(--text);
-  border-radius:12px;
-  padding:8px 10px;
-  font-size:13px;
-  font-weight:700;
-  cursor:pointer;
-  text-decoration:none;
-  font-family: inherit;
-}
-.lbBtn:hover{border-color: rgba(122,162,255,.35)}
-.lbImgWrap{
-  background: rgba(0,0,0,.35);
-  max-height: 78vh;
-  overflow:auto;
-}
-.lbImg{
-  width:100%;
-  height:auto;
-  display:block;
-  cursor: zoom-out;
-}
-.lbHint{
-  padding:10px 12px;
-  border-top:1px solid rgba(255,255,255,.10);
-  color:var(--muted);
-  font-size:12.5px;
-  display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-}
+    /* Back-to-top button */
+    .backTop{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(15,23,49,.88);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      box-shadow: 0 18px 46px rgba(0,0,0,.35);
+      cursor: pointer;
+      z-index: 10001;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, border-color .18s ease;
+    }
+    .backTop.show{
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .backTop:hover{border-color: rgba(122,162,255,.35)}
 
+    /* Lightbox */
+    .lb{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background: rgba(0,0,0,.68);
+      z-index: 10002;
+    }
+    .lb.open{display:flex}
+    .lbCard{
+      width:min(1100px, 100%);
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(15,23,49,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 26px 90px rgba(0,0,0,.65);
+      overflow:hidden;
+      position:relative;
+    }
+    .lbTop{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .lbTop .cap{
+      color:var(--muted);
+      font-size:13px;
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap
+    }
+    .lbTop .lbBtns{display:flex; gap:8px; flex-wrap:wrap}
+    .lbBtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:12px;
+      padding:8px 10px;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      font-family: inherit;
+    }
+    .lbBtn:hover{border-color: rgba(122,162,255,.35)}
+    .lbImgWrap{
+      background: rgba(0,0,0,.35);
+      max-height: 78vh;
+      overflow:auto;
+    }
+    .lbImg{
+      width:100%;
+      height:auto;
+      display:block;
+      cursor: zoom-out;
+    }
+    .lbHint{
+      padding:10px 12px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-size:12.5px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
   </style>
 </head>
 
@@ -551,25 +550,23 @@
         <a class="btn primary" href="#shop">🛒 Browse Shop</a>
         <a class="btn" href="#pricing">💰 Custom Services</a>
         <a class="btn" href="#contact">💬 Get in Touch</a>
-        <!-- ✅ FIX: this button existed in JS but was missing in HTML -->
         <button id="copyLinkBtn" class="btn ghost" type="button">🔗 Share Link</button>
       </div>
     </section>
 
     <h3 class="sectionTitle" id="projects">🎯 Featured Projects <small>(click images to zoom 🔍)</small></h3>
 
-
-<div class="filterBar" aria-label="Project search and filters">
-  <input id="projectSearch" class="filterInput" type="search" placeholder="Search projects (pcb, esp32, mosfet, python...)" aria-label="Search projects" />
-  <div class="filterChips" role="group" aria-label="Quick filters">
-    <button class="chipBtn active" type="button" data-filter="all">✨ All</button>
-    <button class="chipBtn" type="button" data-filter="pcb">🧩 PCB</button>
-    <button class="chipBtn" type="button" data-filter="iot">🚀 IoT</button>
-    <button class="chipBtn" type="button" data-filter="python">🐍 Python</button>
-    <button class="chipBtn" type="button" data-filter="mosfet">⚡ MOSFET</button>
-  </div>
-  <div id="filterStatus" class="filterStatus">Showing all projects</div>
-</div>
+    <div class="filterBar" aria-label="Project search and filters">
+      <input id="projectSearch" class="filterInput" type="search" placeholder="Search projects (pcb, esp32, mosfet, python...)" aria-label="Search projects" />
+      <div class="filterChips" role="group" aria-label="Quick filters">
+        <button class="chipBtn active" type="button" data-filter="all">✨ All</button>
+        <button class="chipBtn" type="button" data-filter="pcb">🧩 PCB</button>
+        <button class="chipBtn" type="button" data-filter="iot">🚀 IoT</button>
+        <button class="chipBtn" type="button" data-filter="python">🐍 Python</button>
+        <button class="chipBtn" type="button" data-filter="mosfet">⚡ MOSFET</button>
+      </div>
+      <div id="filterStatus" class="filterStatus">Showing all projects</div>
+    </div>
 
     <!-- Trust Badges -->
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-bottom:20px">
@@ -608,7 +605,6 @@
       <h4 style="font-size:18px; margin-bottom:12px">🛠️ Skills & Tools I Use</h4>
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px">
-
         <div>
           <h5 style="font-size:14px; margin:0 0 8px 0; color:var(--accent)">🧩 PCB Design</h5>
           <div style="display:flex; flex-wrap:wrap; gap:6px">
@@ -675,7 +671,6 @@
             <span class="tag">Soldering</span>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -1113,7 +1108,6 @@
           </div>
 
           <div style="display:flex; gap:8px">
-            <!-- ✅ NEW: Copy email + subject instead of mailto-only -->
             <button class="miniBtn primary js-orderEmail" data-subject="Buy Power Board PCB" style="flex:1">
               🛒 Order via Email (Copy)
             </button>
@@ -1497,7 +1491,7 @@
             <div style="color:var(--accent)">→</div>
           </a>
 
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener"
+          <a href="https://linkedin.com/in/florin-ciprian-stefan" target="_blank" rel="noopener"
              style="display:flex; align-items:center; gap:12px; padding:14px; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:12px; text-decoration:none; transition: all 0.2s">
             <div style="font-size:28px">💼</div>
             <div style="flex:1">
@@ -1578,144 +1572,7 @@
         Sign in with <b>GitHub</b> to post comments.
       </p>
 
-      <div id="comments-container">
-        <script src="https://utteranc.es/client.js"
-                repo="metusalem696/metusalem696.github.io"
-                issue-term="pathname"
-                theme="github-dark"
-                crossorigin="anonymous"
-                async>
-
-
-// ---- Project search + quick filters ----
-const projectSearch = $("#projectSearch");
-const filterStatus = $("#filterStatus");
-const filterBtns = $$(".filterBar .chipBtn");
-const projectCards = $$("#cards .card");
-let activeFilter = "all";
-
-function applyProjectFilter(){
-  const term = (projectSearch?.value || "").trim().toLowerCase();
-  let shown = 0;
-  projectCards.forEach(card => {
-    const tags = (card.getAttribute("data-tags") || "").toLowerCase();
-    const text = (card.innerText || "").toLowerCase();
-    const matchTerm = !term || tags.includes(term) || text.includes(term);
-    const matchFilter = (activeFilter === "all") || tags.includes(activeFilter);
-    const ok = matchTerm && matchFilter;
-    card.style.display = ok ? "" : "none";
-    if (ok) shown++;
-  });
-
-  if (filterStatus){
-    const total = projectCards.length;
-    if (!term && activeFilter === "all") filterStatus.textContent = "Showing all projects";
-    else filterStatus.textContent = `Showing ${shown} / ${total} projects`;
-  }
-}
-
-if (projectSearch){
-  projectSearch.addEventListener("input", applyProjectFilter);
-  projectSearch.addEventListener("keydown", (e) => {
-    if (e.key === "Escape"){
-      projectSearch.value = "";
-      applyProjectFilter();
-      showToast("🧹 Search cleared", "ok");
-    }
-  });
-}
-
-filterBtns.forEach(b => {
-  b.addEventListener("click", () => {
-    filterBtns.forEach(x => x.classList.remove("active"));
-    b.classList.add("active");
-    activeFilter = b.getAttribute("data-filter") || "all";
-    applyProjectFilter();
-  });
-});
-
-// ---- Back to top ----
-const backTop = $("#backTop");
-if (backTop){
-  const onScroll = () => {
-    if (window.scrollY > 700) backTop.classList.add("show");
-    else backTop.classList.remove("show");
-  };
-  window.addEventListener("scroll", onScroll, {passive:true});
-  onScroll();
-
-  backTop.addEventListener("click", () => {
-    window.scrollTo({top:0, behavior:"smooth"});
-  });
-}
-
-// ---- Lightbox: click image links in assets/img ----
-const lb = $("#lightbox");
-const lbImg = $("#lbImg");
-const lbCap = $("#lbCap");
-const lbPath = $("#lbPath");
-const lbClose = $("#lbClose");
-const lbOpen = $("#lbOpen");
-
-function openLightbox(src, caption=""){
-  if (!lb || !lbImg) return;
-  lbImg.src = src;
-  lbImg.alt = caption || "Preview";
-  if (lbCap) lbCap.textContent = caption || "Image preview";
-  if (lbPath) lbPath.textContent = src;
-  if (lbOpen) lbOpen.href = src;
-  lb.classList.add("open");
-  lb.setAttribute("aria-hidden","false");
-  document.body.style.overflow = "hidden";
-}
-
-function closeLightbox(){
-  if (!lb) return;
-  lb.classList.remove("open");
-  lb.setAttribute("aria-hidden","true");
-  document.body.style.overflow = "";
-  if (lbImg) lbImg.src = "";
-}
-
-if (lbClose) lbClose.addEventListener("click", closeLightbox);
-if (lb) {
-  lb.addEventListener("click", (e) => {
-    // click outside card closes
-    if (e.target === lb) closeLightbox();
-  });
-}
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && lb && lb.classList.contains("open")) closeLightbox();
-});
-
-document.addEventListener("click", (e) => {
-  // allow ctrl/cmd/shift to open new tab normally
-  if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-
-  const a = e.target.closest("a[href]");
-  const img = e.target.closest("img");
-
-  // Prefer image links in assets/img
-  const href = a ? a.getAttribute("href") : null;
-  const isAssetImg = href && /(^|\/)assets\/img\/.*\.(png|jpe?g|webp)$/i.test(href);
-
-  // Or clickable images with data-full
-  const dataFull = img && img.getAttribute("data-full");
-  const src = dataFull || (isAssetImg ? href : null);
-
-  if (!src) return;
-
-  // Prevent normal navigation and open lightbox
-  e.preventDefault();
-  const caption = (img && img.getAttribute("alt")) || (a && a.getAttribute("aria-label")) || "Image";
-  openLightbox(src, caption);
-}, {capture:true});
-
-// Initial apply
-applyProjectFilter();
-
-  </script>
-      </div>
+      <div id="comments-container"></div>
 
       <div class="note" style="margin-top:16px">
         ℹ️ <b>How it works:</b> Click "Sign in with GitHub" above, authorize the app, then write your comment.
@@ -1729,29 +1586,29 @@ applyProjectFilter();
     </footer>
   </main>
 
+  <!-- Back to top -->
+  <button id="backTop" class="backTop" type="button" aria-label="Back to top">⬆️</button>
 
-<!-- Back to top -->
-<button id="backTop" class="backTop" type="button" aria-label="Back to top">⬆️</button>
-
-<!-- Lightbox (click any image to zoom) -->
-<div id="lightbox" class="lb" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="lbCard" role="document">
-    <div class="lbTop">
-      <div id="lbCap" class="cap">Preview</div>
-      <div class="lbBtns">
-        <a id="lbOpen" class="lbBtn" href="#" target="_blank" rel="noopener">↗ Open</a>
-        <button id="lbClose" class="lbBtn" type="button">✕ Close</button>
+  <!-- Lightbox (click any image to zoom) -->
+  <div id="lightbox" class="lb" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lbCard" role="document">
+      <div class="lbTop">
+        <div id="lbCap" class="cap">Preview</div>
+        <div class="lbBtns">
+          <a id="lbOpen" class="lbBtn" href="#" target="_blank" rel="noopener">↗ Open</a>
+          <button id="lbClose" class="lbBtn" type="button">✕ Close</button>
+        </div>
+      </div>
+      <div class="lbImgWrap">
+        <img id="lbImg" class="lbImg" alt="Preview" />
+      </div>
+      <div class="lbHint">
+        <span>ESC to close • Click outside to close</span>
+        <span class="mono" id="lbPath"></span>
       </div>
     </div>
-    <div class="lbImgWrap">
-      <img id="lbImg" class="lbImg" alt="Preview" />
-    </div>
-    <div class="lbHint">
-      <span>ESC to close • Click outside to close</span>
-      <span class="mono" id="lbPath"></span>
-    </div>
   </div>
-</div>
+
   <!-- Toast UI -->
   <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
     <div class="dot"></div>
@@ -1760,13 +1617,15 @@ applyProjectFilter();
 
   <script>
     // =========================================================
-    // ✅ IMPORTANT: CHANGE YOUR EMAIL HERE (ONLY ONCE)
+    // ✅ CRITICAL: Define utility functions FIRST
     // =========================================================
-    const CONTACT_EMAIL = "your.email@example.com"; // <-- change to your real email
-
-    // ---- Utils ----
     const $ = (s, el=document) => el.querySelector(s);
     const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+    // =========================================================
+    // ✅ YOUR EMAIL ADDRESS - CHANGE THIS
+    // =========================================================
+    const CONTACT_EMAIL = "sflorinciprian@gmail.com";
 
     // ---- Toast ----
     let toastTimer = null;
@@ -1803,11 +1662,137 @@ applyProjectFilter();
       if (!ok) throw new Error("Clipboard blocked");
     }
 
-    // ---- Year ----
+    // =========================================================
+    // ✅ PROJECT SEARCH & FILTERS - NOW WORKS!
+    // =========================================================
+    const projectSearch = $("#projectSearch");
+    const filterStatus = $("#filterStatus");
+    const filterBtns = $$(".filterBar .chipBtn");
+    const projectCards = $$("#cards .card");
+    let activeFilter = "all";
+
+    function applyProjectFilter(){
+      const term = (projectSearch?.value || "").trim().toLowerCase();
+      let shown = 0;
+      projectCards.forEach(card => {
+        const tags = (card.getAttribute("data-tags") || "").toLowerCase();
+        const text = (card.innerText || "").toLowerCase();
+        const matchTerm = !term || tags.includes(term) || text.includes(term);
+        const matchFilter = (activeFilter === "all") || tags.includes(activeFilter);
+        const ok = matchTerm && matchFilter;
+        card.style.display = ok ? "" : "none";
+        if (ok) shown++;
+      });
+
+      if (filterStatus){
+        const total = projectCards.length;
+        if (!term && activeFilter === "all") filterStatus.textContent = "Showing all projects";
+        else filterStatus.textContent = `Showing ${shown} / ${total} projects`;
+      }
+    }
+
+    if (projectSearch){
+      projectSearch.addEventListener("input", applyProjectFilter);
+      projectSearch.addEventListener("keydown", (e) => {
+        if (e.key === "Escape"){
+          projectSearch.value = "";
+          applyProjectFilter();
+          showToast("🧹 Search cleared", "ok");
+        }
+      });
+    }
+
+    filterBtns.forEach(b => {
+      b.addEventListener("click", () => {
+        filterBtns.forEach(x => x.classList.remove("active"));
+        b.classList.add("active");
+        activeFilter = b.getAttribute("data-filter") || "all";
+        applyProjectFilter();
+      });
+    });
+
+    // =========================================================
+    // ✅ BACK TO TOP BUTTON
+    // =========================================================
+    const backTop = $("#backTop");
+    if (backTop){
+      const onScroll = () => {
+        if (window.scrollY > 700) backTop.classList.add("show");
+        else backTop.classList.remove("show");
+      };
+      window.addEventListener("scroll", onScroll, {passive:true});
+      onScroll();
+
+      backTop.addEventListener("click", () => {
+        window.scrollTo({top:0, behavior:"smooth"});
+      });
+    }
+
+    // =========================================================
+    // ✅ LIGHTBOX FOR IMAGES
+    // =========================================================
+    const lb = $("#lightbox");
+    const lbImg = $("#lbImg");
+    const lbCap = $("#lbCap");
+    const lbPath = $("#lbPath");
+    const lbClose = $("#lbClose");
+    const lbOpen = $("#lbOpen");
+
+    function openLightbox(src, caption=""){
+      if (!lb || !lbImg) return;
+      lbImg.src = src;
+      lbImg.alt = caption || "Preview";
+      if (lbCap) lbCap.textContent = caption || "Image preview";
+      if (lbPath) lbPath.textContent = src;
+      if (lbOpen) lbOpen.href = src;
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      if (!lb) return;
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+      if (lbImg) lbImg.src = "";
+    }
+
+    if (lbClose) lbClose.addEventListener("click", closeLightbox);
+    if (lb) {
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb) closeLightbox();
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lb && lb.classList.contains("open")) closeLightbox();
+    });
+
+    document.addEventListener("click", (e) => {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+
+      const a = e.target.closest("a[href]");
+      const img = e.target.closest("img");
+
+      const href = a ? a.getAttribute("href") : null;
+      const isAssetImg = href && /(^|\/)assets\/img\/.*\.(png|jpe?g|webp)$/i.test(href);
+
+      const dataFull = img && img.getAttribute("data-full");
+      const src = dataFull || (isAssetImg ? href : null);
+
+      if (!src) return;
+
+      e.preventDefault();
+      const caption = (img && img.getAttribute("alt")) || (a && a.getAttribute("aria-label")) || "Image";
+      openLightbox(src, caption);
+    }, {capture:true});
+
+    // =========================================================
+    // ✅ EMAIL & TEMPLATE COPY BUTTONS
+    // =========================================================
     const yearEl = $("#year");
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // ---- Copy link ----
     const copyLinkBtn = $("#copyLinkBtn");
     if (copyLinkBtn) {
       copyLinkBtn.addEventListener("click", async () => {
@@ -1823,7 +1808,6 @@ applyProjectFilter();
       });
     }
 
-    // ---- Copy email button ----
     const copyEmailBtn = $("#copyEmailBtn");
     const emailCopyStatus = $("#emailCopyStatus");
 
@@ -1860,13 +1844,11 @@ applyProjectFilter();
           }, 3000);
 
         } catch(e) {
-          // prompt is more copy-friendly than alert
           prompt("📧 Copy this email:", CONTACT_EMAIL);
         }
       });
     }
 
-    // ---- Order buttons (copy email + subject) ----
     $$(".js-orderEmail").forEach(btn => {
       btn.addEventListener("click", async () => {
         const subject = btn.getAttribute("data-subject") || "Order";
@@ -1879,7 +1861,6 @@ applyProjectFilter();
       });
     });
 
-    // ---- Copy template ----
     const template = `🧠 Platform: (Arduino Nano/Uno/Mega or ESP32 exact model)
 🔌 Components: (sensors/displays/relays - list with part numbers)
 ⚡ Power: (voltage + load type: relay/motor/pump/etc.)
@@ -1900,6 +1881,26 @@ applyProjectFilter();
         }
       });
     }
+
+    // =========================================================
+    // ✅ UTTERANCES COMMENTS - Load the script properly
+    // =========================================================
+    const commentsContainer = document.getElementById("comments-container");
+    if (commentsContainer) {
+      const script = document.createElement('script');
+      script.src = 'https://utteranc.es/client.js';
+      script.setAttribute('repo', 'metusalem696/metusalem696.github.io');
+      script.setAttribute('issue-term', 'pathname');
+      script.setAttribute('theme', 'github-dark');
+      script.setAttribute('crossorigin', 'anonymous');
+      script.async = true;
+      commentsContainer.appendChild(script);
+    }
+
+    // =========================================================
+    // ✅ INITIAL FILTER APPLICATION
+    // =========================================================
+    applyProjectFilter();
   </script>
 </body>
 </html>
